@@ -295,21 +295,56 @@ function findMatchingComponent(components: any[], type: string, variant?: string
   const normalizedType = type.toLowerCase().trim();
   const normalizedVariant = variant ? variant.toLowerCase().trim() : undefined;
 
+  console.log(`Looking for component: type="${type}", variant="${variant}"`);
+  console.log(`Normalized: type="${normalizedType}", variant="${normalizedVariant}"`);
 
-  // Try exact match
-  let match = components.find(comp => {
+  // First, try to find components that match the type
+  const matchingTypeComponents = components.filter(comp => {
     const compType = (comp.containing_frame && (comp.containing_frame.name || comp.containing_frame.pageName) || '').toLowerCase().trim();
-    const compVariant = (comp.name || '').toLowerCase().trim();
-    return compType === normalizedType && (!normalizedVariant || compVariant === normalizedVariant);
+    return compType === normalizedType || compType.includes(normalizedType);
   });
 
-  // Try fuzzy match if no exact match
+  if (matchingTypeComponents.length === 0) {
+    console.log('No components found matching type:', normalizedType);
+    return null;
+  }
+
+  console.log(`Found ${matchingTypeComponents.length} components matching type`);
+
+  // If no variant specified, return the first matching component
+  if (!normalizedVariant) {
+    console.log('No variant specified, using first matching component');
+    return matchingTypeComponents[0];
+  }
+
+  // Try to find exact variant match
+  let match = matchingTypeComponents.find(comp => {
+    const compVariant = (comp.name || '').toLowerCase().trim();
+    return compVariant === normalizedVariant;
+  });
+
+  // If no exact match, try fuzzy match
   if (!match) {
-    match = components.find(comp => {
-      const compType = (comp.containing_frame && (comp.containing_frame.name || comp.containing_frame.pageName) || '').toLowerCase().trim();
+    console.log('No exact variant match, trying fuzzy match...');
+    match = matchingTypeComponents.find(comp => {
       const compVariant = (comp.name || '').toLowerCase().trim();
-      return compType.includes(normalizedType) && (!normalizedVariant || compVariant.includes(normalizedVariant));
+      return compVariant.includes(normalizedVariant);
     });
+  }
+
+  // If still no match, try to find a default variant
+  if (!match) {
+    console.log('No variant match found, looking for default variant...');
+    match = matchingTypeComponents.find(comp => {
+      const compVariant = (comp.name || '').toLowerCase().trim();
+      return compVariant.includes('default') || compVariant.includes('normal');
+    });
+  }
+
+  if (!match) {
+    console.log('No matching component found');
+  } else {
+    console.log('Found matching component:', match);
   }
 
   return match;
@@ -451,7 +486,7 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
         const screenName = screen.name || screen.id;
         const width = (screen.layout && screen.layout.width) || 1200;
         const componentCount = (screen.children && screen.children.length) || 0;
-        const components = screen.children ? screen.children.map(child => `  - ${child.type}${child.variant ? ` (${child.variant})` : ''}`).join('\n') : '';
+        const components = screen.children ? screen.children.map(child => `  - ${child.id}`).join('\n') : '';
         
         return `📱 ${screenName}\n` +
                `   Components: ${componentCount}\n` +
@@ -572,24 +607,61 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
 
           try {
             const component = await figma.importComponentByKeyAsync(matchingComponent.key);
+            console.log(`Successfully imported component with key: ${matchingComponent.key}`);
             const instance = component.createInstance();
             instance.name = child.id || `${child.type}${child.variant ? ` (${child.variant})` : ''}`;
 
             // Handle variant properties more carefully
             if (child.variant) {
               try {
+                console.log(`Attempting to set variant: ${child.variant}`);
                 const mainComponent = await instance.getMainComponentAsync();
                 if (mainComponent && mainComponent.children) {
-                  const figmaVariant = child.variant.replace('State=', '');
-                  const matchingVariant = mainComponent.children.find(
-                    (child: SceneNode) => child.name === figmaVariant
-                  );
+                  // Try different variant formats
+                  const variantFormats = [
+                    child.variant,
+                    child.variant.replace('State=', ''),
+                    child.variant.toLowerCase(),
+                    child.variant.toUpperCase(),
+                    child.variant.replace(/\s+/g, ''),
+                    child.variant.replace(/\s+/g, '-'),
+                    child.variant.replace(/\s+/g, '_')
+                  ];
+
+                  console.log('Trying variant formats:', variantFormats);
+                  
+                  let matchingVariant = null;
+                  for (const format of variantFormats) {
+                    matchingVariant = mainComponent.children.find(
+                      (child: SceneNode) => child.name.toLowerCase() === format.toLowerCase()
+                    );
+                    if (matchingVariant) {
+                      console.log(`Found matching variant: ${matchingVariant.name}`);
+                      break;
+                    }
+                  }
+
                   if (matchingVariant) {
                     instance.mainComponent = matchingVariant as ComponentNode;
+                  } else {
+                    console.log('No matching variant found. Available variants:', 
+                      mainComponent.children.map(c => c.name));
+                    
+                    // Try to find a default variant if no match found
+                    const defaultVariant = mainComponent.children.find(
+                      (child: SceneNode) => 
+                        child.name.toLowerCase().includes('default') || 
+                        child.name.toLowerCase().includes('normal')
+                    );
+                    
+                    if (defaultVariant) {
+                      console.log(`Using default variant: ${defaultVariant.name}`);
+                      instance.mainComponent = defaultVariant as ComponentNode;
+                    }
                   }
                 }
               } catch (variantError) {
-                console.warn(`Could not set variant ${child.variant} for ${child.type}:`, variantError);
+                console.error(`Variant error for ${child.type} (${child.variant}):`, variantError);
               }
             }
 
