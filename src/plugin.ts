@@ -113,7 +113,7 @@ async function getLLMResponse(
 
 1. Design Focus (PRIMARY REQUIREMENT):
    - Generate desktop-first designs by default
-   - Target desktop screen sizes (width = 1440px, height= 1024px)
+   - Target desktop screen sizes (width = 1440px)
    - Use desktop-optimized layouts and components
    - Consider mobile responsiveness as a secondary requirement
    - add 64px margin between two generated frames.
@@ -123,7 +123,8 @@ async function getLLMResponse(
    - global header and global navigation must be the first two components in the layout
    - global header and global navigation must span the full width of the screen
    - global header and global navigation must be visible at all times (sticky positioning)
-
+   - Use the Global Navigation of any first variant available in the library
+   - The Global Navigation component should be used with its default variant unless specified otherwise
 
    Mobile Considerations (Secondary):
    * For mobile screens (width < 768px):
@@ -142,7 +143,16 @@ async function getLLMResponse(
    - render components in a single column layout by default
    - Consider multi-column layouts where appropriate
 
-4. Component Variant Selection Guidelines:
+4. Component Organization and Quality:
+   - Create small, focused components (< 50 lines)
+   - Follow atomic design principles
+   - Ensure proper component hierarchy
+   - Maintain consistent naming conventions
+   - Use TypeScript for type safety
+   - Implement responsive designs by default
+   - Write extensive console logs for debugging
+
+5. Component Variant Selection Guidelines:
    - Choose variants based on component purpose and context:
      * Buttons:
        - Use "Primary" for main actions (submit, save, confirm)
@@ -172,7 +182,21 @@ async function getLLMResponse(
      )
      .join("\n")}
 
-5. User-Centric Design Principles:
+6. Error Handling and Feedback:
+   - Provide clear error messages for component failures
+   - Log detailed information for debugging
+   - Implement proper error boundaries
+   - Use toast notifications for user feedback
+   - Ensure graceful fallbacks for missing components
+
+7. Documentation and Guidelines:
+   - Document complex component interactions
+   - Keep component usage instructions clear
+   - Include setup and configuration guidelines
+   - Document API endpoints and data structures
+   - Maintain consistent terminology
+
+8. User-Centric Design Principles:
    - Design for clarity and ease of use
    - Ensure intuitive navigation and flow
    - Create clear visual hierarchies
@@ -183,13 +207,13 @@ async function getLLMResponse(
    - Ensure touch targets are at least 44x44px
    - Maintain proper contrast ratios for readability
 
-6. Component Selection and Usage:
+9. Component Selection and Usage:
    - Use ONLY these available components and their variants
    - Choose components that best match the user's mental model
    - Ensure components are used consistently throughout the design
    - For text content, use the type "Textarea" with appropriate sizing
 
-7. Layout and Spacing:
+10. Layout and Spacing:
    - Use consistent spacing (8px, 16px, 24px, 32px)
    - Maintain proper alignment and grid structure
    - Group related elements together
@@ -199,7 +223,7 @@ async function getLLMResponse(
    - Consider mobile-first approach
    - Account for header height in content layout (add 64px top margin to main content)
 
-8. Visual Design:
+11. Visual Design:
    - Create clear visual hierarchy
    - Use appropriate typography scale
    - Ensure text is readable (minimum 16px for body text)
@@ -208,7 +232,7 @@ async function getLLMResponse(
    - Provide visual feedback for interactive elements
    - Use icons and imagery appropriately
 
-9. Accessibility and Inclusivity:
+12. Accessibility and Inclusivity:
    - Ensure sufficient color contrast
    - Provide text alternatives for non-text content
    - Design for keyboard navigation
@@ -217,7 +241,7 @@ async function getLLMResponse(
    - Provide clear focus states
    - Support screen readers
 
-10. Interaction Design:
+13. Interaction Design:
    - Make interactive elements obvious
    - Provide clear affordances
    - Use appropriate hover and active states
@@ -226,7 +250,7 @@ async function getLLMResponse(
    - Prevent and handle errors gracefully
    - Support common user workflows
 
-11. Content Strategy:
+14. Content Strategy:
    - Use clear, concise language
    - Write meaningful labels and instructions
    - Provide helpful error messages
@@ -328,25 +352,17 @@ function findMatchingComponent(components: any[], type: string, variant?: string
     console.log('No exact variant match, trying fuzzy match...');
     match = matchingTypeComponents.find(comp => {
       const compVariant = (comp.name || '').toLowerCase().trim();
-      return compVariant.includes(normalizedVariant);
+      return compVariant.includes(comp.name);
     });
   }
 
-  // If still no match, try to find a default variant
+  // If still no match, return the first component of that type
   if (!match) {
-    console.log('No variant match found, looking for default variant...');
-    match = matchingTypeComponents.find(comp => {
-      const compVariant = (comp.name || '').toLowerCase().trim();
-      return compVariant.includes('default') || compVariant.includes('normal');
-    });
+    console.log('No variant match found, using first available component of type');
+    return matchingTypeComponents[0];
   }
 
-  if (!match) {
-    console.log('No matching component found');
-  } else {
-    console.log('Found matching component:', match);
-  }
-
+  console.log('Found matching component:', match);
   return match;
 }
 
@@ -501,6 +517,26 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
     const successfulComponents: string[] = [];
     const failedComponents: string[] = [];
 
+    // Pre-load common fonts
+    const commonFonts = [
+      { family: "Inter", style: "Regular" },
+      { family: "Inter", style: "Medium" },
+      { family: "Inter", style: "Bold" },
+      { family: "Segoe UI", style: "Regular" },
+      { family: "Segoe UI", style: "Semibold" }
+    ];
+
+    try {
+      await Promise.all(commonFonts.map(font => 
+        figma.loadFontAsync(font).catch(error => {
+          console.warn(`Failed to load font ${font.family} ${font.style}:`, error);
+          return null;
+        })
+      ));
+    } catch (error) {
+      console.warn('Error pre-loading fonts:', error);
+    }
+
     for (const screen of designData.screens) {
       // Check if stopped
       if (shouldStop) {
@@ -528,10 +564,14 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
 
       // Set background color
       container.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
-
-      // Load fonts at the start
-      await figma.loadFontAsync({ family: "Inter", style: "Regular" });
-      await figma.loadFontAsync({ family: "Segoe UI", style: "Regular" });
+      container.layoutMode = "VERTICAL";
+      container.primaryAxisSizingMode = "AUTO";
+      container.counterAxisSizingMode = "FIXED";
+      container.paddingLeft = 24;
+      container.paddingRight = 24;
+      container.paddingTop = 24;
+      container.paddingBottom = 24;
+      container.itemSpacing = 16;
 
       const renderedChildren: SceneNode[] = [];
 
@@ -563,9 +603,22 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
             }
 
             const textNode = figma.createText();
-            textNode.fontName = { family: "Inter", style: "Regular" };
             
-            // Apply text length restrictions based on component type
+            // Try to load font with fallback
+            try {
+              textNode.fontName = { family: "Inter", style: "Regular" };
+              await figma.loadFontAsync(textNode.fontName);
+            } catch (error) {
+              console.warn('Failed to load Inter font, trying Segoe UI:', error);
+              try {
+                textNode.fontName = { family: "Segoe UI", style: "Regular" };
+                await figma.loadFontAsync(textNode.fontName);
+              } catch (fallbackError) {
+                console.warn('Failed to load fallback font:', fallbackError);
+                textNode.fontName = { family: "SF Pro Text", style: "Regular" };
+              }
+            }
+            
             let textContent = child.properties.text;
             if (child.type.toLowerCase().includes('button') || 
                 child.type.toLowerCase().includes('header')) {
@@ -574,7 +627,6 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
             
             textNode.characters = textContent;
             
-            // Set text properties
             if (child.properties.fontSize) {
               textNode.fontSize = child.properties.fontSize;
             }
@@ -582,10 +634,8 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
               textNode.textAlignHorizontal = child.properties.textAlign;
             }
             
-            // Enable text auto-resize
             textNode.textAutoResize = "HEIGHT";
             
-            // Set initial width based on layout or container
             const maxTextWidth = container.width - 48;
             const initialWidth = child.layout && typeof child.layout.width === 'number'
               ? Math.min(child.layout.width, maxTextWidth)
@@ -611,13 +661,12 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
             const instance = component.createInstance();
             instance.name = child.id || `${child.type}${child.variant ? ` (${child.variant})` : ''}`;
 
-            // Handle variant properties more carefully
+            // Handle variant properties
             if (child.variant) {
               try {
                 console.log(`Attempting to set variant: ${child.variant}`);
                 const mainComponent = await instance.getMainComponentAsync();
                 if (mainComponent && mainComponent.children) {
-                  // Try different variant formats
                   const variantFormats = [
                     child.variant,
                     child.variant.replace('State=', ''),
@@ -647,7 +696,6 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
                     console.log('No matching variant found. Available variants:', 
                       mainComponent.children.map(c => c.name));
                     
-                    // Try to find a default variant if no match found
                     const defaultVariant = mainComponent.children.find(
                       (child: SceneNode) => 
                         child.name.toLowerCase().includes('default') || 
@@ -681,12 +729,23 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
                 const textNodes = instance.findAll((node) => node.type === "TEXT");
                 for (const node of textNodes) {
                   const textNode = node as TextNode;
-                  await figma.loadFontAsync(textNode.fontName as FontName);
-                  textNode.characters = child.properties.text;
+                  try {
+                    await figma.loadFontAsync(textNode.fontName as FontName);
+                    textNode.characters = child.properties.text;
+                  } catch (fontError) {
+                    console.warn(`Failed to load font for text node:`, fontError);
+                    // Try to use a fallback font
+                    try {
+                      textNode.fontName = { family: "Inter", style: "Regular" };
+                      await figma.loadFontAsync(textNode.fontName);
+                      textNode.characters = child.properties.text;
+                    } catch (fallbackError) {
+                      console.warn(`Failed to load fallback font:`, fallbackError);
+                    }
+                  }
                 }
               }
               
-              // Handle other properties like colors, states, etc.
               if (child.properties.fill) {
                 const fills = instance.findAll((node) => "fills" in node);
                 for (const node of fills) {
