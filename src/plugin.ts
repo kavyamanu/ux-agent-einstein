@@ -473,19 +473,14 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
       return;
     }
 
-    // Check if stopped
     if (shouldStop) {
       throw new Error('Generation stopped');
     }
 
-    console.log(`Available components in selected libraries:`, components);
-
-    // Use the first selected library for system prompt context, or default to 'core'
     const firstLibraryId = libraryIds[0] as LibraryId || 'core';
     reportProgress('generating', 'Generating design...');
     const designData = await getLLMResponse(components, userPrompt, LIBRARY_CONFIG[firstLibraryId]);
     
-    // Check if stopped
     if (shouldStop) {
       throw new Error('Generation stopped');
     }
@@ -496,13 +491,12 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
       return;
     }
 
-    // Send preview message to UI
     const previewText = `I'll create ${designData.screens.length} screen${designData.screens.length > 1 ? 's' : ''}:\n\n` +
       designData.screens.map((screen: { name?: string; id: string; layout?: any; children?: any[] }) => {
         const screenName = screen.name || screen.id;
         const width = (screen.layout && screen.layout.width) || 1200;
         const componentCount = (screen.children && screen.children.length) || 0;
-        const components = screen.children ? screen.children.map(child => `  - ${child.id}`).join('\n') : '';
+        const components = screen.children ? screen.children.map(child => `  - ${child.type}${child.variant ? ` (${child.variant})` : ''}`).join('\n') : '';
         
         return `📱 ${screenName}\n` +
                `   Components: ${componentCount}\n` +
@@ -522,8 +516,7 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
       { family: "Inter", style: "Regular" },
       { family: "Inter", style: "Medium" },
       { family: "Inter", style: "Bold" },
-      { family: "Segoe UI", style: "Regular" },
-      { family: "Segoe UI", style: "Semibold" }
+      { family: "SF Pro Text", style: "Regular" }
     ];
 
     try {
@@ -537,11 +530,17 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
       console.warn('Error pre-loading fonts:', error);
     }
 
-    for (const screen of designData.screens) {
+    // Process screens sequentially
+    for (let i = 0; i < designData.screens.length; i++) {
+      const screen = designData.screens[i];
+      
       // Check if stopped
       if (shouldStop) {
         throw new Error('Generation stopped');
       }
+
+      // Report progress for current screen
+      reportProgress('rendering', `Rendering screen ${i + 1} of ${designData.screens.length}...`);
 
       const container = figma.createFrame();
       container.name = screen.name || screen.id || "Generated Screen";
@@ -575,6 +574,7 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
 
       const renderedChildren: SceneNode[] = [];
 
+      // Process children sequentially
       const children = screen.children || [];
       for (const child of children) {
         if (!child.type) {
@@ -609,13 +609,12 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
               textNode.fontName = { family: "Inter", style: "Regular" };
               await figma.loadFontAsync(textNode.fontName);
             } catch (error) {
-              console.warn('Failed to load Inter font, trying Segoe UI:', error);
+              console.warn('Failed to load Inter font, trying SF Pro Text:', error);
               try {
-                textNode.fontName = { family: "Segoe UI", style: "Regular" };
+                textNode.fontName = { family: "SF Pro Text", style: "Regular" };
                 await figma.loadFontAsync(textNode.fontName);
               } catch (fallbackError) {
                 console.warn('Failed to load fallback font:', fallbackError);
-                textNode.fontName = { family: "SF Pro Text", style: "Regular" };
               }
             }
             
@@ -657,14 +656,12 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
 
           try {
             const component = await figma.importComponentByKeyAsync(matchingComponent.key);
-            console.log(`Successfully imported component with key: ${matchingComponent.key}`);
             const instance = component.createInstance();
             instance.name = child.id || `${child.type}${child.variant ? ` (${child.variant})` : ''}`;
 
             // Handle variant properties
             if (child.variant) {
               try {
-                console.log(`Attempting to set variant: ${child.variant}`);
                 const mainComponent = await instance.getMainComponentAsync();
                 if (mainComponent && mainComponent.children) {
                   const variantFormats = [
@@ -676,26 +673,18 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
                     child.variant.replace(/\s+/g, '-'),
                     child.variant.replace(/\s+/g, '_')
                   ];
-
-                  console.log('Trying variant formats:', variantFormats);
                   
                   let matchingVariant = null;
                   for (const format of variantFormats) {
                     matchingVariant = mainComponent.children.find(
                       (child: SceneNode) => child.name.toLowerCase() === format.toLowerCase()
                     );
-                    if (matchingVariant) {
-                      console.log(`Found matching variant: ${matchingVariant.name}`);
-                      break;
-                    }
+                    if (matchingVariant) break;
                   }
 
                   if (matchingVariant) {
                     instance.mainComponent = matchingVariant as ComponentNode;
                   } else {
-                    console.log('No matching variant found. Available variants:', 
-                      mainComponent.children.map(c => c.name));
-                    
                     const defaultVariant = mainComponent.children.find(
                       (child: SceneNode) => 
                         child.name.toLowerCase().includes('default') || 
@@ -703,7 +692,6 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
                     );
                     
                     if (defaultVariant) {
-                      console.log(`Using default variant: ${defaultVariant.name}`);
                       instance.mainComponent = defaultVariant as ComponentNode;
                     }
                   }
@@ -734,7 +722,6 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
                     textNode.characters = child.properties.text;
                   } catch (fontError) {
                     console.warn(`Failed to load font for text node:`, fontError);
-                    // Try to use a fallback font
                     try {
                       textNode.fontName = { family: "Inter", style: "Regular" };
                       await figma.loadFontAsync(textNode.fontName);
