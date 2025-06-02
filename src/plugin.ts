@@ -6,7 +6,7 @@ let isGenerating = false;
 let shouldStop = false;
 
 // Define library types
-type LibraryId = 'slds';
+type LibraryId = 'slds' | 'web' | 'core';
 
 type LibraryConfig = {
   name: string;
@@ -23,14 +23,14 @@ const LIBRARY_CONFIG: LibraryConfigs = {
     name: "Core Components",
     fileKey: "RiY2reCmbX0Jyq7QAFL8SE",
   }, // Using same key for now as requested
-  // web: {
-  //   name: "web Components",
-  //   fileKey: "uuzKZvAxmOWZSDuZjkAfmQ", // Using same key for now as requested
-  // },
-  // slds: {
-  //   name: "slds Components",
-  //   fileKey: "E1qeg6cS93K9Lm8c5AMSod", // Using same key for now as requested
-  // }
+  web: {
+    name: "web Components",
+    fileKey: "uuzKZvAxmOWZSDuZjkAfmQ", // Using same key for now as requested
+  },
+  core: {
+    name: "slds Components",
+    fileKey: "E1qeg6cS93K9Lm8c5AMSod", // Using same key for now as requested
+  }
 };
 
 figma.ui.onmessage = async (msg) => {
@@ -41,7 +41,7 @@ figma.ui.onmessage = async (msg) => {
     }
 
     // Always use all libraries
-    const libraryIds: LibraryId[] = ['slds'];
+    const libraryIds: LibraryId[] = ['slds', 'web', 'core'];
     const selectedLibraryConfigs = libraryIds.map(id => LIBRARY_CONFIG[id]).filter(Boolean);
     if (!selectedLibraryConfigs.length) {
       figma.notify("Error: No valid libraries found", { error: true });
