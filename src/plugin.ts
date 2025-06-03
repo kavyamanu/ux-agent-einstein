@@ -6,7 +6,7 @@ let isGenerating = false;
 let shouldStop = false;
 
 // Define library types
-type LibraryId = 'slds' | 'web' | 'core';
+type LibraryId = 'slds' | 'libA' | 'libB';
 
 type LibraryConfig = {
   name: string;
@@ -20,14 +20,14 @@ type LibraryConfigs = {
 // Add library configuration
 const LIBRARY_CONFIG: LibraryConfigs = {
   slds: {
-    name: "Core Components",
+    name: "slds Components",
     fileKey: "RiY2reCmbX0Jyq7QAFL8SE",
   }, // Using same key for now as requested
-  web: {
+  libA: {
     name: "web Components",
     fileKey: "uuzKZvAxmOWZSDuZjkAfmQ", // Using same key for now as requested
   },
-  core: {
+  libB: {
     name: "slds Components",
     fileKey: "E1qeg6cS93K9Lm8c5AMSod", // Using same key for now as requested
   }
@@ -41,7 +41,7 @@ figma.ui.onmessage = async (msg) => {
     }
 
     // Always use all libraries
-    const libraryIds: LibraryId[] = ['slds', 'web', 'core'];
+    const libraryIds: LibraryId[] = ['slds', 'libA', 'libB'];
     const selectedLibraryConfigs = libraryIds.map(id => LIBRARY_CONFIG[id]).filter(Boolean);
     if (!selectedLibraryConfigs.length) {
       figma.notify("Error: No valid libraries found", { error: true });
@@ -131,7 +131,6 @@ async function getLLMResponse(
      - Adapt desktop header to vertical layout
      - Stack navigation items vertically
      - Use hamburger menu for additional options
-     - Ensure touch targets are at least 44x44px
 
 3. Layout Structure:
    - global header and global navigation MUST be the first two component
@@ -204,7 +203,6 @@ async function getLLMResponse(
    - Provide clear feedback for user actions
    - Minimize cognitive load
    - Follow Fitts's Law for interactive elements
-   - Ensure touch targets are at least 44x44px
    - Maintain proper contrast ratios for readability
 
 9. Component Selection and Usage:
@@ -393,73 +391,29 @@ function safelyResizeNode(
   }
 }
 
-// Add new function for text overflow handling
-function handleTextOverflow(node: TextNode, maxWidth: number): void {
-  if (node.width > maxWidth) {
-    // Enable text auto-resize
-    node.textAutoResize = "HEIGHT";
-    // Set maximum width
-    node.resize(maxWidth, node.height);
-  }
-}
-
-// Add function to handle text length restrictions
-function restrictTextLength(text: string, maxLength: number = 15): string {
-  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-}
-
-// Modify the applyConsistentSpacing function
+// Simplify applyConsistentSpacing to focus on essential layout
 function applyConsistentSpacing(container: FrameNode, children: SceneNode[]): void {
   const spacing = 16; // Base spacing unit
   const padding = 24; // Container padding
-  const minHeight = 600; // Minimum container height
+  const maxHeight = 1024; // Maximum container height
   let currentY = padding;
-  let currentX = padding;
   let maxRowHeight = 0;
-  let rowStartIndex = 0;
 
-  // First pass: handle text overflow and calculate actual dimensions
-  for (const child of children) {
-    if (child.type === "TEXT") {
-      const maxTextWidth = container.width - (padding * 2);
-      handleTextOverflow(child as TextNode, maxTextWidth);
-    }
-  }
-
-  // Second pass: position components
+  // Position components vertically
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
     
-    // Check if child would overflow container width
-    if (currentX + child.width > container.width - padding) {
-      // Start new row
-      currentX = padding;
-      currentY += maxRowHeight + spacing;
-      maxRowHeight = 0;
-      rowStartIndex = i;
-    }
-
     // Position child
-    child.x = currentX;
+    child.x = padding;
     child.y = currentY;
 
     // Update tracking variables
-    currentX += child.width + spacing;
+    currentY += child.height + spacing;
     maxRowHeight = Math.max(maxRowHeight, child.height);
-
-    // If this is the last child in the row, ensure proper spacing
-    if (i === children.length - 1 || 
-        (i < children.length - 1 && 
-         currentX + children[i + 1].width > container.width - padding)) {
-      // Add extra spacing after the last element in the row
-      currentX = padding;
-      currentY += maxRowHeight + spacing;
-      maxRowHeight = 0;
-    }
   }
 
-  // Update container height to fit all content with padding, but not less than minHeight
-  const totalHeight = Math.max(currentY + maxRowHeight + padding, minHeight);
+  // Update container height to fit all content with padding, but not exceed maxHeight
+  const totalHeight = Math.min(currentY + maxRowHeight + padding, maxHeight);
   container.resize(container.width, totalHeight);
 }
 
@@ -557,7 +511,7 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
       }
 
       // Set initial height to minimum height
-      container.resize(width, 600); // Minimum height
+      container.resize(width, 1024); // Set fixed height of 1024px
       container.x = x;
       container.y = y;
 
@@ -566,17 +520,22 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
       container.layoutMode = "VERTICAL";
       container.primaryAxisSizingMode = "AUTO";
       container.counterAxisSizingMode = "FIXED";
-      container.paddingLeft = 24;
+      container.paddingLeft = 0;
       container.paddingRight = 24;
-      container.paddingTop = 24;
+      container.paddingTop = 0;
       container.paddingBottom = 24;
       container.itemSpacing = 16;
+      container.minHeight = 1024; // Ensure minimum height
+      container.maxHeight = 1024; // Restrict maximum height
 
       const renderedChildren: SceneNode[] = [];
 
       // Process children sequentially
       const children = screen.children || [];
-      for (const child of children) {
+      
+      // First, render header and navigation if they exist
+      for (let i = 0; i < Math.min(2, children.length); i++) {
+        const child = children[i];
         if (!child.type) {
           console.warn(`Skipping component missing type:`, child);
           continue;
@@ -619,10 +578,6 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
             }
             
             let textContent = child.properties.text;
-            if (child.type.toLowerCase().includes('button') || 
-                child.type.toLowerCase().includes('header')) {
-              textContent = restrictTextLength(textContent);
-            }
             
             textNode.characters = textContent;
             
@@ -752,6 +707,203 @@ async function renderComponents(userPrompt: string, libraryIds: string[]) {
           console.error(`Error rendering ${child.type}${child.variant ? ` (${child.variant})` : ''}:`, error);
           failedComponents.push(`${child.type}${child.variant ? ` (${child.variant})` : ''}`);
         }
+      }
+
+      // Create a new frame for remaining components with padding
+      if (children.length > 2) {
+        const contentFrame = figma.createFrame();
+        contentFrame.name = "Content Area";
+        contentFrame.layoutMode = "VERTICAL";
+        contentFrame.primaryAxisSizingMode = "AUTO";
+        contentFrame.counterAxisSizingMode = "FIXED";
+        contentFrame.resize(container.width, 600); // Set width to match container and minimum height
+        contentFrame.paddingLeft = 24;
+        contentFrame.paddingRight = 24;
+        contentFrame.paddingTop = 0;
+        contentFrame.paddingBottom = 24;
+        contentFrame.itemSpacing = 16;
+        contentFrame.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }];
+        contentFrame.minHeight = 600; // Ensure minimum height
+
+        // Render remaining components in the content frame
+        for (let i = 2; i < children.length; i++) {
+          const child = children[i];
+          if (!child.type) {
+            console.warn(`Skipping component missing type:`, child);
+            continue;
+          }
+
+          try {
+            const matchingComponent = findMatchingComponent(
+              components,
+              child.type,
+              child.variant
+            );
+
+            if (!matchingComponent) {
+              failedComponents.push(`${child.type}${child.variant ? ` (${child.variant})` : ''}`);
+              continue;
+            }
+
+            if (matchingComponent.isText) {
+              // Handle text component
+              if (!child.properties || typeof child.properties.text !== 'string') {
+                console.warn(`Text component missing text property:`, child);
+                failedComponents.push(`${child.type}`);
+                continue;
+              }
+
+              const textNode = figma.createText();
+              
+              // Try to load font with fallback
+              try {
+                textNode.fontName = { family: "Inter", style: "Regular" };
+                await figma.loadFontAsync(textNode.fontName);
+              } catch (error) {
+                console.warn('Failed to load Inter font, trying SF Pro Text:', error);
+                try {
+                  textNode.fontName = { family: "SF Pro Text", style: "Regular" };
+                  await figma.loadFontAsync(textNode.fontName);
+                } catch (fallbackError) {
+                  console.warn('Failed to load fallback font:', fallbackError);
+                }
+              }
+              
+              let textContent = child.properties.text;
+              
+              textNode.characters = textContent;
+              
+              if (child.properties.fontSize) {
+                textNode.fontSize = child.properties.fontSize;
+              }
+              if (child.properties.textAlign) {
+                textNode.textAlignHorizontal = child.properties.textAlign;
+              }
+              
+              textNode.textAutoResize = "HEIGHT";
+              
+              const maxTextWidth = contentFrame.width - 48;
+              const initialWidth = child.layout && typeof child.layout.width === 'number'
+                ? Math.min(child.layout.width, maxTextWidth)
+                : maxTextWidth;
+              
+              textNode.resize(initialWidth, textNode.height);
+
+              contentFrame.appendChild(textNode);
+              renderedChildren.push(textNode);
+              successfulComponents.push(`${child.type}`);
+              continue;
+            }
+
+            if (!matchingComponent.key) {
+              console.error(`Component missing key: ${child.type}${child.variant ? ` (${child.variant})` : ''}`);
+              failedComponents.push(`${child.type}${child.variant ? ` (${child.variant})` : ''}`);
+              continue;
+            }
+
+            try {
+              const component = await figma.importComponentByKeyAsync(matchingComponent.key);
+              const instance = component.createInstance();
+              instance.name = child.id || `${child.type}${child.variant ? ` (${child.variant})` : ''}`;
+
+              // Handle variant properties
+              if (child.variant) {
+                try {
+                  const mainComponent = await instance.getMainComponentAsync();
+                  if (mainComponent && mainComponent.children) {
+                    const variantFormats = [
+                      child.variant,
+                      child.variant.replace('State=', ''),
+                      child.variant.toLowerCase(),
+                      child.variant.toUpperCase(),
+                      child.variant.replace(/\s+/g, ''),
+                      child.variant.replace(/\s+/g, '-'),
+                      child.variant.replace(/\s+/g, '_')
+                    ];
+                    
+                    let matchingVariant = null;
+                    for (const format of variantFormats) {
+                      matchingVariant = mainComponent.children.find(
+                        (child: SceneNode) => child.name.toLowerCase() === format.toLowerCase()
+                      );
+                      if (matchingVariant) break;
+                    }
+
+                    if (matchingVariant) {
+                      instance.mainComponent = matchingVariant as ComponentNode;
+                    } else {
+                      const defaultVariant = mainComponent.children.find(
+                        (child: SceneNode) => 
+                          child.name.toLowerCase().includes('default') || 
+                          child.name.toLowerCase().includes('normal')
+                      );
+                      
+                      if (defaultVariant) {
+                        instance.mainComponent = defaultVariant as ComponentNode;
+                      }
+                    }
+                  }
+                } catch (variantError) {
+                  console.error(`Variant error for ${child.type} (${child.variant}):`, variantError);
+                }
+              }
+
+              // Set layout
+              if (child.layout) {
+                if (typeof child.layout.x === 'number') instance.x = child.layout.x;
+                if (typeof child.layout.y === 'number') instance.y = child.layout.y;
+                
+                if (typeof child.layout.width === 'number' && typeof child.layout.height === 'number') {
+                  safelyResizeNode(instance, child.layout.width, child.layout.height);
+                }
+              }
+
+              // Handle component properties
+              if (child.properties) {
+                if (typeof child.properties.text === "string") {
+                  const textNodes = instance.findAll((node) => node.type === "TEXT");
+                  for (const node of textNodes) {
+                    const textNode = node as TextNode;
+                    try {
+                      await figma.loadFontAsync(textNode.fontName as FontName);
+                      textNode.characters = child.properties.text;
+                    } catch (fontError) {
+                      console.warn(`Failed to load font for text node:`, fontError);
+                      try {
+                        textNode.fontName = { family: "Inter", style: "Regular" };
+                        await figma.loadFontAsync(textNode.fontName);
+                        textNode.characters = child.properties.text;
+                      } catch (fallbackError) {
+                        console.warn(`Failed to load fallback font:`, fallbackError);
+                      }
+                    }
+                  }
+                }
+                
+                if (child.properties.fill) {
+                  const fills = instance.findAll((node) => "fills" in node);
+                  for (const node of fills) {
+                    (node as GeometryMixin).fills = [{ type: 'SOLID', color: child.properties.fill }];
+                  }
+                }
+              }
+
+              contentFrame.appendChild(instance);
+              renderedChildren.push(instance);
+              successfulComponents.push(`${child.type}${child.variant ? ` (${child.variant})` : ''}`);
+            } catch (error) {
+              console.error(`Error rendering ${child.type}${child.variant ? ` (${child.variant})` : ''}:`, error);
+              failedComponents.push(`${child.type}${child.variant ? ` (${child.variant})` : ''}`);
+            }
+          } catch (error) {
+            console.error(`Error rendering ${child.type}${child.variant ? ` (${child.variant})` : ''}:`, error);
+            failedComponents.push(`${child.type}${child.variant ? ` (${child.variant})` : ''}`);
+          }
+        }
+
+        // Add the content frame to the main container
+        container.appendChild(contentFrame);
+        renderedChildren.push(contentFrame);
       }
 
       // Apply consistent spacing to all rendered children
