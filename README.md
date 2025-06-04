@@ -1,125 +1,128 @@
-# Figma UX Agent
+🔧 Figma Plugin – Local Setup Guide
+This guide will walk you through setting up and running the Figma plugin locally. You’ll be able to clone the repository, make edits, and test changes directly in Figma.
 
-A powerful AI-powered design assistant plugin for Figma that helps you create beautiful, professional designs using your component libraries.
 
-## Features
+✅ 1. Prerequisites
+Ensure you have the following tools installed:
+Figma Desktop App (recommended)
 
-- 🤖 AI-powered design generation using Einstein AI
-- 📚 Support for multiple component libraries
-- 🔄 Real-time design preview
-- 🚀 Fast component rendering
-- 💾 Component caching for improved performance
-- 🛑 Generation control with stop functionality
-- 🔍 Detailed design previews
 
-## Prerequisites
+Internet connection
 
-- Node.js (v14 or higher)
-- Figma Desktop App
-- Access to component libraries in Figma
-- Einstein API Access
-- Figma Access Token
 
-## API Keys Setup
+Git – for cloning the repo
 
-### Einstein AI Configuration
-1. Ensure you have access to Einstein AI services
-2. Obtain the following credentials from your Salesforce admin:
-   - Einstein API Key
-   - Einstein Base URL
-   - Einstein Model ID
-   - Einstein Client Feature ID
-   - Einstein Tenant ID
-   - Einstein Organization ID
 
-### Generating Figma Access Token
-1. Open Figma Desktop App
-2. Click on your profile icon in the top left corner
-3. Select "Help & Account" → "Account Settings"
-4. Switch to the "Security" tab
-5. Scroll down to "Personal access tokens"
-6. Click "Generate new token"
-7. Give your token a name (e.g., "Figma UX Agent")
-8. Select "Full access" for permissions
-9. Click "Generate token"
-10. Copy the generated token immediately (you won't be able to see it again)
+Node.js (v18 or newer recommended)
 
-## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/figma-ux-agent.git
-cd figma-ux-agent
-```
+Visual Studio Code (VS Code) – recommended editor
 
-2. Install dependencies:
-```bash
-pnpm install
-```
+🛠 2. Install Git (if not already installed)
 
-3. Set up environment variables:
-Create a `.env` file in the root directory with:
-```
-PORT=3000
-FIGMA_TOKEN=your_figma_access_token
-EINSTEIN_API_KEY=your_einstein_api_key
-EINSTEIN_BASE_URL=your_einstein_base_url
-EINSTEIN_MODEL=your_einstein_model_id
-EINSTEIN_MODEL_PROVIDER=your_einstein_model_provider
-EINSTEIN_ORG_ID=your_einstein_org_id
-EINSTEIN_CLIENT_FEATURE_ID=your_einstein_client_feature_id
-EINSTEIN_TENANT_ID=your_einstein_tenant_id
-LOG_LEVEL=INFO
-```
 
-4. Start the server:
-```bash
-pnpm run dev
-```
+MacOS:
 
-5. In Figma:
-   - Go to Plugins > Development > Import plugin from manifest
-   - Select the `manifest.json` file from the project directory
 
-## Usage
+Open Terminal and run: git --version
 
-1. Open the plugin in Figma
-2. Enter your design requirements in the chat interface
-3. The Einstein AI will analyze your prompt and generate a preview
-4. Review the preview and components to be used
-5. Click generate to create the design
-6. Use the stop button to halt generation if needed
 
-## Component Libraries
+If Git is not installed, you will be prompted to install the Xcode Command Line Tools. Click "Install".
 
-The plugin supports multiple component libraries:
-- Core Components
-- Web Components
-- SLDS Components
 
-Each library is configured with its own file key and can be used independently or together.
+Or, download from https://git-scm.com/download/mac
 
-## Development
 
-### Project Structure
-```
-figma-ux-agent/
-├── src/
-│   ├── plugin.ts        # Figma plugin code
-│   ├── server.js        # Local server for Einstein AI integration
-│   └── index.html       # Plugin UI
-├── manifest.json        # Plugin manifest
-└── package.json         # Project dependencies
-```
+To check if Git is installed, run:
 
-## Contributing
+git --version
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
-## Support
+💻 3. Install VS Code (Recommended)
+VS Code is a powerful, free editor that simplifies development.
+Download: https://code.visualstudio.com/
 
-For support, please open an issue in the GitHub repository or contact the maintainers.
+
+Choose your OS and follow the installer instructions.
+
+📦 4. Clone the Plugin Repository
+Open VS Code and launch a terminal (`Ctrl + ``).
+
+
+Navigate to your desired folder:  cd path/to/your/folder
+
+cd path/to/your/folder
+
+Clone the repository:
+
+git clone https://github.com/kavyamanu/ux-agent-einstein.git
+
+cd ux-agent-einstein
+
+⚙️ 5. Install Node.js (if not already installed)
+Download and install from: https://nodejs.org/ (LTS version preferred).
+Verify installation:
+
+node --version
+
+npm --version
+
+
+📥 6. Install Project Dependencies
+Inside the cloned folder, run:
+
+npm install
+
+This installs all required libraries.
+
+🚀 7. Start the Local Development Server
+[.env file has to be added at root, which will be provided in person]
+In terminal, start the dev server:
+
+npm run dev
+Or, if that doesn't work:
+
+node src/server/server.js
+
+Leave this terminal window open while using the plugin.
+
+🔌 8. Load the Plugin into Figma
+Open Figma Desktop.
+
+
+Go to the menu → Plugins → Development → Import Plugin from Manifest...
+
+
+In the file dialog, navigate to your plugin folder and select the manifest.json file.
+
+
+The plugin will now appear in your Plugins > Development menu.
+
+
+
+
+
+
+
+✏️ 9. Make Code Changes & See Results
+Edit files like:
+
+
+src/plugin.ts
+
+
+src/server/utils.js
+
+
+Save your changes — the dev script watches for updates.
+
+
+To reload in Figma:
+
+
+Close the plugin window and reopen it from Plugins → Development.
+
+✅ You’re all set!
+Now you can test and iterate on your plugin in real time. Let me know if you'd like to add a troubleshooting section or steps for production builds.
+
+
