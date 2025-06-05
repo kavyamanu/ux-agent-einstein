@@ -1,0 +1,322 @@
+{
+  "type": "COMPONENT",
+  "name": "_Key screens/Dashboard",
+  "children": [
+    {
+      "type": "INSTANCE",
+      "name": "📝 Global Header",
+      "children": [
+        {
+          "type": "INSTANCE",
+          "name": "_Logo",
+          "children": [
+            {
+              "type": "VECTOR",
+              "name": "Icon"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "📝 Input - Search",
+          "children": [
+            {
+              "type": "INSTANCE",
+              "name": "Input field"
+            }
+          ]
+        },
+        {
+          "type": "FRAME",
+          "name": "Header Icons",
+          "children": [
+            {
+              "type": "INSTANCE",
+              "name": "Agentforce icon"
+            },
+            {
+              "type": "FRAME",
+              "name": "Split Button"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "New icon"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Trailhead icon"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Question icon"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Setup icon"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Notification icon"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Avatar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "INSTANCE",
+      "name": "📝 Global Navigation",
+      "children": [
+        {
+          "type": "FRAME",
+          "name": "Tabs",
+          "children": [
+            {
+              "type": "INSTANCE",
+              "name": "_Global Navigation app name"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 1"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 2"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 3"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 4"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 5"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 6"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 7"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 8"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 9"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 10"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 11"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 12"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 13"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 14"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Tab 15"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "Overflow tab"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Edit button icon",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Button icon container"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FRAME",
+      "name": "Page content",
+      "children": [
+        {
+          "type": "FRAME",
+          "name": "Left column",
+          "children": [
+            {
+              "type": "INSTANCE",
+              "name": "⚡ Card"
+            }
+          ]
+        },
+        {
+          "type": "FRAME",
+          "name": "Center column",
+          "children": [
+            {
+              "type": "INSTANCE",
+              "name": "⚡ Card"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "⚡ Card"
+            }
+          ]
+        },
+        {
+          "type": "FRAME",
+          "name": "Right column",
+          "children": [
+            {
+              "type": "INSTANCE",
+              "name": "⚡ Card"
+            },
+            {
+              "type": "INSTANCE",
+              "name": "⚡ Card"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "INSTANCE",
+      "name": "📝 Docked Utility Bar",
+      "children": [
+        {
+          "type": "INSTANCE",
+          "name": "Tab 1",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 2",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 3",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 4",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 5",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 6",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 7",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        },
+        {
+          "type": "INSTANCE",
+          "name": "Tab 8",
+          "children": [
+            {
+              "type": "FRAME",
+              "name": "Content "
+            },
+            {
+              "type": "INSTANCE",
+              "name": "_Horizontal-border"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

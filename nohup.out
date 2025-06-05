@@ -1,0 +1,2693 @@
+{"level":30,"time":1749102362249,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","msg":"Server listening at http://0.0.0.0:3000"}
+Server is running on http://0.0.0.0:3000
+{"level":30,"time":1749103160027,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-1","req":{"method":"OPTIONS","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+(node:7776) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"level":30,"time":1749103160031,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-1","res":{"statusCode":204},"responseTime":4.036083936691284,"msg":"request completed"}
+{"level":30,"time":1749103160032,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-2","req":{"method":"GET","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+{"level":30,"time":1749103166826,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-2","res":{"statusCode":200},"responseTime":6794.014457941055,"msg":"request completed"}
+{"level":30,"time":1749103166922,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-3","req":{"method":"OPTIONS","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+{"level":30,"time":1749103166924,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-3","res":{"statusCode":204},"responseTime":0.8763749599456787,"msg":"request completed"}
+{"level":30,"time":1749103166924,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-4","req":{"method":"POST","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+Received request body: {
+  prompt: 'Create a Salesforce account detail page for "Alphabet, Inc." with:\n' +
+    '\n' +
+    'Header section:\n' +
+    '- Account name with standard action buttons (Follow, New, Edit, Delete, Clone)\n' +
+    '- Progress path showing "Status: Working" (4 of 5 stages complete) with "Mark Stage as Complete" button\n' +
+    '\n' +
+    'Main content in 2 columns:\n' +
+    'Left (2/3 width):\n' +
+    '- About section: Name, Website, Type, Description, Parent Account, Account Currency\n' +
+    '- Get in Touch section: Phone, Billing Address, Shipping Address\n' +
+    '\n' +
+    'Right (1/3 width):\n' +
+    '- Guidance for Success card with 4 bullet points about discovery questions\n' +
+    '- Quick actions: Log a Call, Email, New Event buttons\n' +
+    '- Activity timeline titled "Upcoming and Overdue" with email activities\n' +
+    '\n' +
+    'Bottom section:\n' +
+    '- Related lists: Contacts (3 records), Opportunities (0), Cases (0), Files (0 with upload option)\n' +
+    '\n' +
+    'Use standard Salesforce navigation with Accounts selected.',
+  libraryId: 'Test Design System',
+  systemPrompt: 'You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Large\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '- 📝 Listbox:\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '- ⚡ Vertical Navigation:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '- 📝 Input - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '- ⚡ File Selector - Image:\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Error\n' +
+    '  * State=Default\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Drag over\n' +
+    '- 📝 Expandable Section:\n' +
+    '  * Expanded=No, State=Default\n'... 152731 more characters
+}
+Sending fetch to AI with payload: {
+  model: 'llmgateway__OpenAIGPT4Omni_08_06',
+  prompt: '\n' +
+    'You are an expert UI design agent. Generate valid JSON that follows the structure below to represent multi-screen user flows in Figma. This is a **reference schema** — follow its structure exactly.\n' +
+    '\n' +
+    'Reference JSON Structure:\n' +
+    '{\n' +
+    '  "screens": [\n' +
+    '    {\n' +
+    '      "id": "unique-screen-id",                    // Unique identifier for the screen\n' +
+    '      "name": "Human-readable screen name",\n' +
+    '      "layout": {\n' +
+    '        "width": number,\n' +
+    '        "height": number,\n' +
+    '        "x": number,\n' +
+    '        "y": number,\n' +
+    '        "padding": { "top": 0, "right": number, "bottom": number, "left": number }, \n' +
+    '\n' +
+    '      },\n' +
+    '      "children": [\n' +
+    '        {\n' +
+    '          "type": "ComponentName",                // Must match an available component type\n' +
+    '          "variant": "VariantName",              // Must match an available variant for the component type\n' +
+    '          "id": "unique-component-id",           // Optional unique identifier for the component\n' +
+    '          "layout": {\n' +
+    '            "width": number,\n' +
+    '            "height": number,\n' +
+    '            "x": number,\n' +
+    '            "y": number,\n' +
+    '            "padding": { "top": number, "right": number, "bottom": number, "left": number }, \n' +
+    '            "margin": { "top": number, "right": number, "bottom": number, "left": number }   \n' +
+    '          },\n' +
+    '          "properties": {\n' +
+    '            "text": "Text shown on component"\n' +
+    '          }\n' +
+    '        }\n' +
+    '        // More children...\n' +
+    '      ],\n' +
+    '      "connections": [\n' +
+    '        {\n' +
+    '          "targetId": "another-screen-id",         // ID of target screen for navigation\n' +
+    '          "label": "Description of the action"\n' +
+    '        }\n' +
+    '        // More connections if needed...\n' +
+    '      ]\n' +
+    '    }\n' +
+    '    // More screens...\n' +
+    '  ]\n' +
+    '}\n' +
+    '\n' +
+    'Guidelines:\n' +
+    '1. Follow the structure and key names from the reference strictly.\n' +
+    '2. Only use component types and variants from this list: You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n'... 156217 more characters
+}
+{"level":50,"time":1749103194205,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-4","err":{"type":"Error","message":"Einstein API error: 503 - upstream connect error or disconnect/reset before headers. reset reason: connection termination","stack":"Error: Einstein API error: 503 - upstream connect error or disconnect/reset before headers. reset reason: connection termination\n    at Object.<anonymous> (file:///Users/rmanoharan/Documents/FigmaPlugin/ux-agent-einstein/src/server/server.js:95:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"},"msg":"Einstein API error: 503 - upstream connect error or disconnect/reset before headers. reset reason: connection termination"}
+{"level":30,"time":1749103194207,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-4","res":{"statusCode":500},"responseTime":27282.80137503147,"msg":"request completed"}
+{"level":30,"time":1749103258038,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-5","req":{"method":"OPTIONS","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+{"level":30,"time":1749103258039,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-5","res":{"statusCode":204},"responseTime":0.4805830717086792,"msg":"request completed"}
+{"level":30,"time":1749103258040,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-6","req":{"method":"GET","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+{"level":30,"time":1749103264537,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-6","res":{"statusCode":200},"responseTime":6496.913125038147,"msg":"request completed"}
+{"level":30,"time":1749103264636,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-7","req":{"method":"OPTIONS","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+{"level":30,"time":1749103264637,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-7","res":{"statusCode":204},"responseTime":0.9418749809265137,"msg":"request completed"}
+Received request body: {
+  prompt: 'Create a Salesforce account detail page for "Alphabet, Inc." with:\n' +
+    '\n' +
+    'Header section:\n' +
+    '- Account name with standard action buttons (Follow, New, Edit, Delete, Clone)\n' +
+    '- Progress path showing "Status: Working" (4 of 5 stages complete) with "Mark Stage as Complete" button\n' +
+    '\n' +
+    'Main content in 2 columns:\n' +
+    'Left (2/3 width):\n' +
+    '- About section: Name, Website, Type, Description, Parent Account, Account Currency\n' +
+    '- Get in Touch section: Phone, Billing Address, Shipping Address\n' +
+    '\n' +
+    'Right (1/3 width):\n' +
+    '- Guidance for Success card with 4 bullet points about discovery questions\n' +
+    '- Quick actions: Log a Call, Email, New Event buttons\n' +
+    '- Activity timeline titled "Upcoming and Overdue" with email activities\n' +
+    '\n' +
+    'Bottom section:\n' +
+    '- Related lists: Contacts (3 records), Opportunities (0), Cases (0), Files (0 with upload option)\n' +
+    '\n' +
+    'Use standard Salesforce navigation with Accounts selected.',
+  libraryId: 'Test Design System',
+  systemPrompt: 'You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Large\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '- 📝 Listbox:\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '- ⚡ Vertical Navigation:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '- 📝 Input - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '- ⚡ File Selector - Image:\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Error\n' +
+    '  * State=Default\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Drag over\n' +
+    '- 📝 Expandable Section:\n' +
+    '  * Expanded=No, State=Default\n'... 152731 more characters
+}
+Sending fetch to AI with payload: {
+  model: 'llmgateway__OpenAIGPT4Omni_08_06',
+  prompt: '\n' +
+    'You are an expert UI design agent. Generate valid JSON that follows the structure below to represent multi-screen user flows in Figma. This is a **reference schema** — follow its structure exactly.\n' +
+    '\n' +
+    'Reference JSON Structure:\n' +
+    '{\n' +
+    '  "screens": [\n' +
+    '    {\n' +
+    '      "id": "unique-screen-id",                    // Unique identifier for the screen\n' +
+    '      "name": "Human-readable screen name",\n' +
+    '      "layout": {\n' +
+    '        "width": number,\n' +
+    '        "height": number,\n' +
+    '        "x": number,\n' +
+    '        "y": number,\n' +
+    '        "padding": { "top": 0, "right": number, "bottom": number, "left": number }, \n' +
+    '\n' +
+    '      },\n' +
+    '      "children": [\n' +
+    '        {\n' +
+    '          "type": "ComponentName",                // Must match an available component type\n' +
+    '          "variant": "VariantName",              // Must match an available variant for the component type\n' +
+    '          "id": "unique-component-id",           // Optional unique identifier for the component\n' +
+    '          "layout": {\n' +
+    '            "width": number,\n' +
+    '            "height": number,\n' +
+    '            "x": number,\n' +
+    '            "y": number,\n' +
+    '            "padding": { "top": number, "right": number, "bottom": number, "left": number }, \n' +
+    '            "margin": { "top": number, "right": number, "bottom": number, "left": number }   \n' +
+    '          },\n' +
+    '          "properties": {\n' +
+    '            "text": "Text shown on component"\n' +
+    '          }\n' +
+    '        }\n' +
+    '        // More children...\n' +
+    '      ],\n' +
+    '      "connections": [\n' +
+    '        {\n' +
+    '          "targetId": "another-screen-id",         // ID of target screen for navigation\n' +
+    '          "label": "Description of the action"\n' +
+    '        }\n' +
+    '        // More connections if needed...\n' +
+    '      ]\n' +
+    '    }\n' +
+    '    // More screens...\n' +
+    '  ]\n' +
+    '}\n' +
+    '\n' +
+    'Guidelines:\n' +
+    '1. Follow the structure and key names from the reference strictly.\n' +
+    '2. Only use component types and variants from this list: You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n'... 156217 more characters
+}
+{"level":30,"time":1749103264638,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-8","req":{"method":"POST","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57253},"msg":"incoming request"}
+{"level":30,"time":1749103330055,"pid":7776,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-8","res":{"statusCode":200},"responseTime":65416.06029188633,"msg":"request completed"}
+{"level":30,"time":1749103553012,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","msg":"Server listening at http://0.0.0.0:3000"}
+Server is running on http://0.0.0.0:3000
+{"level":30,"time":1749103603081,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-1","req":{"method":"OPTIONS","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+(node:15850) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"level":30,"time":1749103603086,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-1","res":{"statusCode":204},"responseTime":4.601834058761597,"msg":"request completed"}
+{"level":30,"time":1749103603087,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-2","req":{"method":"GET","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+{"level":30,"time":1749103608838,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-2","res":{"statusCode":200},"responseTime":5751.4175000190735,"msg":"request completed"}
+{"level":30,"time":1749103609032,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-3","req":{"method":"OPTIONS","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+{"level":30,"time":1749103609034,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-3","res":{"statusCode":204},"responseTime":1.231958031654358,"msg":"request completed"}
+{"level":30,"time":1749103609034,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-4","req":{"method":"POST","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+Received request body: {
+  prompt: 'Create a Salesforce account detail page for "Alphabet, Inc." with:\n' +
+    '\n' +
+    'Header section:\n' +
+    '- Account name with standard action buttons (Follow, New, Edit, Delete, Clone)\n' +
+    '- Progress path showing "Status: Working" (4 of 5 stages complete) with "Mark Stage as Complete" button\n' +
+    '\n' +
+    'Main content in 2 columns:\n' +
+    'Left (2/3 width):\n' +
+    '- About section: Name, Website, Type, Description, Parent Account, Account Currency\n' +
+    '- Get in Touch section: Phone, Billing Address, Shipping Address\n' +
+    '\n' +
+    'Right (1/3 width):\n' +
+    '- Guidance for Success card with 4 bullet points about discovery questions\n' +
+    '- Quick actions: Log a Call, Email, New Event buttons\n' +
+    '- Activity timeline titled "Upcoming and Overdue" with email activities\n' +
+    '\n' +
+    'Bottom section:\n' +
+    '- Related lists: Contacts (3 records), Opportunities (0), Cases (0), Files (0 with upload option)\n' +
+    '\n' +
+    'Use standard Salesforce navigation with Accounts selected.',
+  libraryId: 'Test Design System',
+  systemPrompt: 'You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Large\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '- 📝 Listbox:\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '- ⚡ Vertical Navigation:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '- 📝 Input - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '- ⚡ File Selector - Image:\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Error\n' +
+    '  * State=Default\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Drag over\n' +
+    '- 📝 Expandable Section:\n' +
+    '  * Expanded=No, State=Default\n'... 152731 more characters
+}
+Sending fetch to AI with payload: {
+  model: 'llmgateway__OpenAIGPT4Omni_08_06',
+  prompt: '\n' +
+    'You are an expert UI design agent. Generate valid JSON that follows the structure below to represent multi-screen user flows in Figma. This is a **reference schema** — follow its structure exactly.\n' +
+    '\n' +
+    'Reference JSON Structure:\n' +
+    '{\n' +
+    '  "screens": [\n' +
+    '    {\n' +
+    '      "id": "unique-screen-id",                    // Unique identifier for the screen\n' +
+    '      "name": "Human-readable screen name",\n' +
+    '      "layout": {\n' +
+    '        "width": number,\n' +
+    '        "height": number,\n' +
+    '        "x": number,\n' +
+    '        "y": number,\n' +
+    '        "padding": { "top": 0, "right": number, "bottom": number, "left": number }, \n' +
+    '\n' +
+    '      },\n' +
+    '      "children": [\n' +
+    '        {\n' +
+    '          "type": "ComponentName",                // Must match an available component type\n' +
+    '          "variant": "VariantName",              // Must match an available variant for the component type\n' +
+    '          "id": "unique-component-id",           // Optional unique identifier for the component\n' +
+    '          "layout": {\n' +
+    '            "width": number,\n' +
+    '            "height": number,\n' +
+    '            "x": number,\n' +
+    '            "y": number,\n' +
+    '            "padding": { "top": number, "right": number, "bottom": number, "left": number }, \n' +
+    '            "margin": { "top": number, "right": number, "bottom": number, "left": number }   \n' +
+    '          },\n' +
+    '          "properties": {\n' +
+    '            "text": "Text shown on component"\n' +
+    '          }\n' +
+    '        }\n' +
+    '        // More children...\n' +
+    '      ],\n' +
+    '      "connections": [\n' +
+    '        {\n' +
+    '          "targetId": "another-screen-id",         // ID of target screen for navigation\n' +
+    '          "label": "Description of the action"\n' +
+    '        }\n' +
+    '        // More connections if needed...\n' +
+    '      ]\n' +
+    '    }\n' +
+    '    // More screens...\n' +
+    '  ]\n' +
+    '}\n' +
+    '\n' +
+    'Guidelines:\n' +
+    '1. Follow the structure and key names from the reference strictly.\n' +
+    '2. Only use component types and variants from this list: You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n'... 156217 more characters
+}
+{"level":30,"time":1749103672961,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-4","res":{"statusCode":200},"responseTime":63924.47129189968,"msg":"request completed"}
+{"level":30,"time":1749103702093,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-5","req":{"method":"OPTIONS","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+{"level":30,"time":1749103702094,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-5","res":{"statusCode":204},"responseTime":0.6472500562667847,"msg":"request completed"}
+{"level":30,"time":1749103702095,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-6","req":{"method":"GET","url":"/components?fileKeys=QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,QdMPM4oxxfAMd4npexRQQL,RiY2reCmbX0Jyq7QAFL8SE","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+{"level":30,"time":1749103709519,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-6","res":{"statusCode":200},"responseTime":7423.775583028793,"msg":"request completed"}
+{"level":30,"time":1749103709707,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-7","req":{"method":"OPTIONS","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+Received request body: {
+  prompt: 'Create a Salesforce account detail page for "Alphabet, Inc." with:\n' +
+    '\n' +
+    'Header section:\n' +
+    '- Account name with standard action buttons (Follow, New, Edit, Delete, Clone)\n' +
+    '- Progress path showing "Status: Working" (4 of 5 stages complete) with "Mark Stage as Complete" button\n' +
+    '\n' +
+    'Main content in 2 columns:\n' +
+    'Left (2/3 width):\n' +
+    '- About section: Name, Website, Type, Description, Parent Account, Account Currency\n' +
+    '- Get in Touch section: Phone, Billing Address, Shipping Address\n' +
+    '\n' +
+    'Right (1/3 width):\n' +
+    '- Guidance for Success card with 4 bullet points about discovery questions\n' +
+    '- Quick actions: Log a Call, Email, New Event buttons\n' +
+    '- Activity timeline titled "Upcoming and Overdue" with email activities\n' +
+    '\n' +
+    'Bottom section:\n' +
+    '- Related lists: Contacts (3 records), Opportunities (0), Cases (0), Files (0 with upload option)\n' +
+    '\n' +
+    'Use standard Salesforce navigation with Accounts selected.',
+  libraryId: 'Test Design System',
+  systemPrompt: 'You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Large\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '- 📝 Listbox:\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '  * Type=Default\n' +
+    '  * Type=Pills\n' +
+    '  * Type=Dialog\n' +
+    '- ⚡ Vertical Navigation:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '- 📝 Input - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Filled\n' +
+    '  * State=Error\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '- ⚡ File Selector - Image:\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Default\n' +
+    '  * State=Error\n' +
+    '  * State=Drag over\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Error\n' +
+    '  * State=Default\n' +
+    '  * State=Drag over + error\n' +
+    '  * State=Drag over\n' +
+    '- 📝 Expandable Section:\n' +
+    '  * Expanded=No, State=Default\n'... 152731 more characters
+}
+Sending fetch to AI with payload: {
+  model: 'llmgateway__OpenAIGPT4Omni_08_06',
+  prompt: '\n' +
+    'You are an expert UI design agent. Generate valid JSON that follows the structure below to represent multi-screen user flows in Figma. This is a **reference schema** — follow its structure exactly.\n' +
+    '\n' +
+    'Reference JSON Structure:\n' +
+    '{\n' +
+    '  "screens": [\n' +
+    '    {\n' +
+    '      "id": "unique-screen-id",                    // Unique identifier for the screen\n' +
+    '      "name": "Human-readable screen name",\n' +
+    '      "layout": {\n' +
+    '        "width": number,\n' +
+    '        "height": number,\n' +
+    '        "x": number,\n' +
+    '        "y": number,\n' +
+    '        "padding": { "top": 0, "right": number, "bottom": number, "left": number }, \n' +
+    '\n' +
+    '      },\n' +
+    '      "children": [\n' +
+    '        {\n' +
+    '          "type": "ComponentName",                // Must match an available component type\n' +
+    '          "variant": "VariantName",              // Must match an available variant for the component type\n' +
+    '          "id": "unique-component-id",           // Optional unique identifier for the component\n' +
+    '          "layout": {\n' +
+    '            "width": number,\n' +
+    '            "height": number,\n' +
+    '            "x": number,\n' +
+    '            "y": number,\n' +
+    '            "padding": { "top": number, "right": number, "bottom": number, "left": number }, \n' +
+    '            "margin": { "top": number, "right": number, "bottom": number, "left": number }   \n' +
+    '          },\n' +
+    '          "properties": {\n' +
+    '            "text": "Text shown on component"\n' +
+    '          }\n' +
+    '        }\n' +
+    '        // More children...\n' +
+    '      ],\n' +
+    '      "connections": [\n' +
+    '        {\n' +
+    '          "targetId": "another-screen-id",         // ID of target screen for navigation\n' +
+    '          "label": "Description of the action"\n' +
+    '        }\n' +
+    '        // More connections if needed...\n' +
+    '      ]\n' +
+    '    }\n' +
+    '    // More screens...\n' +
+    '  ]\n' +
+    '}\n' +
+    '\n' +
+    'Guidelines:\n' +
+    '1. Follow the structure and key names from the reference strictly.\n' +
+    '2. Only use component types and variants from this list: You are a UI/UX design expert creating high-quality, professional designs with exceptional customer experience using the Test Design System library. Follow these guidelines:\n' +
+    '\n' +
+    '## 1. Design Focus (PRIMARY REQUIREMENT)\n' +
+    '- Generate desktop-first designs by default\n' +
+    '- Target desktop screen sizes (width = 1440px)\n' +
+    '- Use desktop-optimized layouts and components\n' +
+    '- Consider mobile responsiveness as a secondary requirement\n' +
+    '- Add 64px margin between two generated frames\n' +
+    '\n' +
+    '## 2. Global Header Requirements (MUST BE INCLUDED IN EVERY PAGE)\n' +
+    '- Every screen MUST include a global header and global navigation at the top with no padding above\n' +
+    '- Global header and global navigation must be the first two components in the layout\n' +
+    '- Global header and global navigation MUST span the full width of the screen\n' +
+    '- Global header and global navigation MUST be of 1440px width!!!\n' +
+    '- Global header and global navigation must be visible at all times (sticky positioning)\n' +
+    '- Use the Global Navigation of any first variant available in the library\n' +
+    '- The Global Navigation component should be used with its default variant unless specified otherwise\n' +
+    '- **Limit the number of actions/buttons in the page header to a maximum of 3, prioritizing the most important actions.**\n' +
+    '\n' +
+    '\n' +
+    '\n' +
+    '## 3. Component Selection Guidelines\n' +
+    '\n' +
+    '### Component Selection Logic\n' +
+    '\n' +
+    '**Information Architecture:**\n' +
+    '- Cards for grouping content\n' +
+    '- Accordions/Expandable Sections for collapsible content\n' +
+    '- Tabs for major sections\n' +
+    '- Scoped Tabs for sub-navigation\n' +
+    '\n' +
+    '**User Input Needs:**\n' +
+    '- Text entry → Input or Textarea\n' +
+    '- Single selection → Radio Group or Combobox\n' +
+    '- Multiple selection → Checkbox Group or Multi-select Combobox\n' +
+    '- Binary choice → Checkbox or Toggle\n' +
+    '- File upload → File Selector\n' +
+    '- Visual selection → Visual Picker\n' +
+    '\n' +
+    '**Actions:**\n' +
+    '- Primary actions → Button (primary variant)\n' +
+    '- Multiple related actions → Button Group\n' +
+    '- Context actions → Menu\n' +
+    '- Page-level actions → Page Header buttons (max 3)\n' +
+    '\n' +
+    '**Navigation:**\n' +
+    '- Hierarchical → Breadcrumb\n' +
+    '- App sections → Global Navigation\n' +
+    '- Within a page → Tabs or Scoped Tabs\n' +
+    '- Within a record → Activity Timeline\n' +
+    '\n' +
+    '**User Feedback:**\n' +
+    '- Persistent messages → Scoped Notifications\n' +
+    '- Temporary feedback → Toast\n' +
+    '- Action confirmation → Notification\n' +
+    '- Process completion → Modal or Toast\n' +
+    '\n' +
+    '## 4. Layout Structure\n' +
+    '- Global header and global navigation MUST be first two components\n' +
+    '- Content area must start below global navigation\n' +
+    '- Account for header height in content layout\n' +
+    '- Ensure proper spacing between header and content\n' +
+    '- Maintain consistent padding and margins\n' +
+    '- Use desktop-optimized grid layouts\n' +
+    '- Never overlap components.\n' +
+    '- **For dashboard or multi-section layouts, use a two-column grid: place activity feeds and lists on the left, and summary cards, charts, or widgets on the right. Use a flexible layout that adapts to the number and type of components.**\n' +
+    "- **If the layout is a grid or two-column, specify this in the JSON structure as a 'layout' property, e.g., { layout: { type: 'grid', columns: 2, areas: [...] } }**\n" +
+    '\n' +
+    '## 5. Component Organization and Quality\n' +
+    '- Create small, focused components (< 50 lines)\n' +
+    '- Follow atomic design principles\n' +
+    '- Ensure proper component hierarchy\n' +
+    '- Maintain consistent naming conventions\n' +
+    '- Use TypeScript for type safety\n' +
+    '- Implement responsive designs by default\n' +
+    '- Write extensive console logs for debugging\n' +
+    '\n' +
+    '## 6. Component Variant Selection Guidelines\n' +
+    '- Available components and their variants:\n' +
+    '- 📝 Visual Picker - Coverable Content:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '- 📝 Visual Picker:\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Disabled\n' +
+    '  * Size=Small, State=Hover\n' +
+    '  * Size=Large, State=Hover\n' +
+    '  * Size=Large, State=Selected\n' +
+    '  * Size=Large, State=Disabled\n' +
+    '  * Size=Small, State=Selected\n' +
+    '  * Size=Large, State=Default\n' +
+    '  * Size=Medium (default), State=Default\n' +
+    '  * Size=Medium (default), State=Disabled\n' +
+    '  * Size=Small, State=Default\n' +
+    '  * Size=Medium (default), State=Selected\n' +
+    '  * Size=Medium (default), State=Hover\n' +
+    '- ⚡ Vertical Navigation - Shaded:\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=True\n' +
+    '  * Compact Density=False\n' +
+    '- 📝 Textarea - Gen AI:\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Default\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '  * State=Error\n' +
+    '  * State=Filled\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Disabled\n' +
+    '  * State=Active/Focus\n' +
+    '  * State=Error\n' +
+    '  * State=AI Selected\n' +
+    '  * State=Disabled\n' +
+    '  * State=Filled + dirty\n' +
+    '  * State=Default\n' +
+    '  * State=Filled\n' +
+    '  * State=Active/Focus + dirty\n' +
+    '- ⚡ Pill - With Icon:\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Hover\n' +
+    '  * State=Focus\n' +
+    '  * State=Focus\n' +
+    '  * State=Hover\n' +
+    '  * State=Default\n' +
+    '- ⚡ Pill - Bare:\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '  * State=Default\n' +
+    '  * State=Focus\n' +
+    '- ⚡ Menu:\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n' +
+    '  * Size=Medium\n' +
+    '  * Size=Default (small)\n' +
+    '  * Size=Large\n' +
+    '  * Size=Extra extra small\n' +
+    '  * Size=Extra small\n'... 156217 more characters
+}
+{"level":30,"time":1749103709709,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-7","res":{"statusCode":204},"responseTime":1.5346670150756836,"msg":"request completed"}
+{"level":30,"time":1749103709710,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-8","req":{"method":"POST","url":"/command","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":57755},"msg":"incoming request"}
+{"level":30,"time":1749103763870,"pid":15850,"hostname":"rmanoha-ltmcque.internal.salesforce.com","reqId":"req-8","res":{"statusCode":200},"responseTime":54160.02516698837,"msg":"request completed"}

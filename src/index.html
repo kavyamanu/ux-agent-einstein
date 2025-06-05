@@ -20,6 +20,7 @@
       max-width: 100%;
       margin: 0 auto;
       position: relative;
+      min-height: 600px; /* Add minimum height */
     }
 
     .chat-interface {
@@ -27,6 +28,7 @@
       flex-direction: column;
       height: 100%;
       position: relative;
+      min-height: 600px; /* Add minimum height */
     }
 
     .header {
@@ -58,6 +60,7 @@
     .header-actions {
       display: flex;
       gap: 12px;
+      align-items: center;
     }
 
     .header-button {
@@ -68,6 +71,90 @@
       color: #666666;
     }
 
+    .manage-files-btn {
+      padding: 6px 12px;
+      border: 1px solid #e1e1e1;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .manage-files-btn:hover {
+      background: #f5f5f5;
+      border-color: #18A0FB;
+    }
+
+    .file-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .file-modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 480px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .file-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    .file-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+    }
+    .file-list-item:last-child {
+      border-bottom: none;
+    }
+    .delete-file-btn {
+      background: none;
+      border: none;
+      color: #FF3B30;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 8px;
+    }
+    .file-modal-error {
+      color: #FF3B30;
+      font-size: 12px;
+      margin-top: -8px;
+    }
+    .file-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .close-file-modal {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+
     .chat-container {
       flex: 1;
       padding: 16px;
@@ -75,11 +162,12 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      padding-bottom: 160px;
+      padding-bottom: 240px; /* Increased padding to ensure no content is hidden behind input */
       position: relative;
       overflow-y: auto;
-      height: calc(100vh - 180px);
-      /* Account for header and input container */
+      height: calc(100vh - 200px); /* Adjusted height calculation */
+      min-height: 500px; /* Increased minimum height */
+      margin-bottom: 200; /* Ensure no margin at bottom */
     }
 
     .message {
@@ -144,12 +232,19 @@
       z-index: 100;
       margin-bottom: 0;
       box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      box-sizing: border-box;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      padding-bottom: 32px;
     }
 
     .action-buttons {
       display: flex;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .action-button {
@@ -172,20 +267,26 @@
 
     .input-row {
       display: flex;
-      gap: 8px;
+      gap: 12px; /* Increased gap between input and button */
       align-items: flex-end;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     #prompt {
-      flex: 1;
-      min-height: 60px;
-      max-height: 120px;
-      padding: 8px 12px;
-      border: 1px solid #e1e1e1;
-      border-radius: 8px;
-      resize: none;
+      width: 100%; /* Ensure full width */
+      min-height: 80px;
+      max-height: 200px;
+      padding: 12px;
+      line-height: 1.5;
       font-family: inherit;
       font-size: 14px;
+      border: 1px solid #e1e1e1;
+      border-radius: 8px;
+      resize: vertical;
+      transition: border-color 0.2s;
+      box-sizing: border-box; /* Include padding in width calculation */
+      margin-bottom: 0;
     }
 
     #generate {
@@ -197,13 +298,34 @@
       cursor: pointer;
       height: 40px;
       width: 40px;
+      min-width: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
     }
 
     #generate:hover {
       background-color: #0D8DE3;
+    }
+
+    #generate.generating {
+      background-color: #FF3B30; /* Red color for stop state */
+    }
+
+    #generate.generating:hover {
+      background-color: #DC3545; /* Darker red on hover */
+    }
+
+    #generate .icon {
+      font-size: 16px;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    #generate.generating .icon {
+      transform: scale(0.9);
     }
 
     /* Add focus management styles */
@@ -367,6 +489,283 @@
         transform: scale(1);
       }
     }
+
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 800px; /* Increase max width for better readability */
+      max-height: 80vh;
+      overflow-y: auto;
+      margin: 20px auto; /* Center modal content */
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    /* Template and Component Buttons */
+    .template-list, .component-list {
+      display: grid;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .template-btn, .component-btn {
+      width: 100%; /* Make buttons full width */
+      padding: 12px;
+      border: 1px solid #e1e1e1;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+
+    .template-btn:hover, .component-btn:hover {
+      background: #f5f5f5;
+      border-color: #18A0FB;
+    }
+
+    .component-category {
+      margin-bottom: 16px;
+    }
+
+    .component-category h4 {
+      margin: 0 0 8px 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Prompt Quality Indicator */
+    .prompt-quality {
+      margin: 8px 0;
+      padding: 8px;
+      background: #f8f8f8;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .prompt-quality:hover {
+      opacity: 1;
+    }
+
+    .quality-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .quality-label {
+      font-size: 12px;
+      color: #666;
+      white-space: nowrap;
+      min-width: 90px;
+    }
+
+    .quality-meter {
+      flex: 1;
+      height: 4px;
+      background: #e1e1e1;
+      border-radius: 2px;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .quality-bar {
+      height: 100%;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+
+    .quality-tips {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #666;
+      opacity: 0;
+      transition: opacity 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+      max-width: 100%;
+      display: block;
+    }
+
+    .quality-tips.visible {
+      opacity: 1;
+    }
+
+    .quality-tips.warning {
+      color: #FF3B30;
+    }
+
+    .quality-tips.success {
+      color: #4CAF50;
+    }
+
+    /* Add a subtle pulse animation for the quality bar */
+    @keyframes subtle-pulse {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+
+    .quality-bar.updating {
+      animation: subtle-pulse 1s ease infinite;
+    }
+
+    /* Prompt Input Wrapper */
+    .prompt-input-wrapper {
+      position: relative;
+      flex: 1;
+      width: calc(100% - 52px); /* Account for button width and gap */
+      min-width: 0;
+    }
+
+    .prompt-suggestions {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #e1e1e1;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .suggestion-header {
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #666;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .suggestion-list {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .suggestion-item {
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .suggestion-item:hover {
+      background: #f5f5f5;
+    }
+
+    /* Update existing input styles */
+    #prompt {
+      min-height: 80px;
+      max-height: 200px;
+      padding: 12px;
+      line-height: 1.5;
+      font-family: inherit;
+      font-size: 14px;
+      border: 1px solid #e1e1e1;
+      border-radius: 8px;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    #prompt:focus {
+      border-color: #18A0FB;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(24, 160, 251, 0.1);
+    }
+
+    /* Action Buttons Update */
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .action-button {
+      padding: 6px 12px;
+      border: 1px solid #e1e1e1;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .action-button:hover {
+      background: #f5f5f5;
+      border-color: #18A0FB;
+    }
+
+    .action-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .quality-bar {
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    
+    .quality-tips {
+      transition: color 0.3s ease;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    /* Loader spinner for file validation */
+    .file-modal-loader {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #e1e1e1;
+      border-top: 2px solid #18A0FB;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 
@@ -387,6 +786,7 @@
             UX Agent
           </div>
         </div>
+        <!-- File management removed: using hardcoded file key -->
       </div>
 
       <div class="chat-container" id="chat" role="log" aria-label="Chat messages">
@@ -409,17 +809,106 @@
 
       <form class="input-container" role="form" aria-label="Message input">
         <div class="action-buttons" role="toolbar" aria-label="Additional actions">
-          <button id="stop" class="action-button" type="button" disabled>Stop generating</button>
+          <button id="showTemplates" class="action-button" type="button">📋 Templates</button>
+          <button id="showComponents" class="action-button" type="button">🎨 Components</button>
         </div>
+
+        <!-- Template Selection Modal -->
+        <div id="templateModal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Choose a Template</h3>
+              <button class="close-modal">&times;</button>
+            </div>
+            <div class="template-list">
+              <button class="template-btn" data-template="basic">Basic Screen</button>
+              <button class="template-btn" data-template="detailed">Detailed Screen</button>
+              <button class="template-btn" data-template="list">List View</button>
+              <button class="template-btn" data-template="form">Form/Modal</button>
+              <button class="template-btn" data-template="advanced">Complete Application</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component Reference Modal -->
+        <div id="componentModal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>SLDS Components</h3>
+              <button class="close-modal">&times;</button>
+            </div>
+            <div class="component-list">
+              <div class="component-category">
+                <h4>Data Display</h4>
+                <button class="component-btn" data-component="card">Card</button>
+                <button class="component-btn" data-component="datatable">Data Table</button>
+                <button class="component-btn" data-component="chart">Chart</button>
+              </div>
+              <div class="component-category">
+                <h4>Forms & Input</h4>
+                <button class="component-btn" data-component="input">Input</button>
+                <button class="component-btn" data-component="combobox">Combobox</button>
+                <button class="component-btn" data-component="textarea">Textarea</button>
+              </div>
+              <div class="component-category">
+                <h4>Navigation</h4>
+                <button class="component-btn" data-component="globalnav">Global Navigation</button>
+                <button class="component-btn" data-component="tabs">Tabs</button>
+                <button class="component-btn" data-component="breadcrumb">Breadcrumb</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompt Quality Indicator -->
+        <div class="prompt-quality" role="status" aria-live="polite">
+          <div class="quality-indicator">
+            <span class="quality-label">Prompt Quality:</span>
+            <div class="quality-meter">
+              <div class="quality-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="quality-tips"></div>
+        </div>
+
         <div class="input-row">
-          <textarea id="prompt" name="prompt" placeholder="Describe your project needs..." role="textbox"
-            aria-labelledby="prompt-label" aria-describedby="prompt-description"></textarea>
+          <div class="prompt-input-wrapper">
+            <textarea id="prompt" name="prompt" 
+              placeholder="Describe your project needs... (Press Tab for suggestions)" 
+              role="textbox"
+              aria-labelledby="prompt-label" 
+              aria-describedby="prompt-description"></textarea>
+            <div class="prompt-suggestions" style="display: none;">
+              <div class="suggestion-header">Suggestions:</div>
+              <div class="suggestion-list"></div>
+            </div>
+          </div>
           <button id="generate" type="submit" aria-label="Send message">➤</button>
         </div>
+
         <div id="prompt-description" class="visually-hidden">
           Enter your design requirements or questions here. Press Enter to send or use the send button.
+          Use templates and component reference for better results.
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Figma File Management Modal -->
+  <div id="fileModal" class="file-modal" style="display:none;">
+    <div class="file-modal-content">
+      <div class="file-modal-header">
+        <h3 style="margin:0;font-size:18px;">Manage Figma Files</h3>
+        <button class="close-file-modal" id="closeFileModal">&times;</button>
+      </div>
+      <label for="figmaFileUrl" style="font-size:13px;">Add Figma File URL</label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input id="figmaFileUrl" type="text" placeholder="https://www.figma.com/file/KEY/…" style="flex:1;padding:6px 8px;font-size:13px;border:1px solid #e1e1e1;border-radius:4px;" />
+        <button id="addFigmaFileBtn" style="padding:6px 12px;font-size:13px;border-radius:4px;border:1px solid #18A0FB;background:#18A0FB;color:white;cursor:pointer;">Add</button>
+      </div>
+      <div id="fileModalError" class="file-modal-error" style="min-height:20px;"></div>
+      <span id="fileModalLoader" class="file-modal-loader" style="display:none;"></span>
+      <ul id="figmaFileList" class="file-list"></ul>
     </div>
   </div>
 
@@ -436,6 +925,11 @@
       event.preventDefault();
       const prompt = promptInput.value.trim();
       if (!prompt || isGenerating) return;
+
+      // Update button state
+      generateBtn.classList.add('generating');
+      generateBtn.innerHTML = '<span class="icon">⏹</span>';
+      generateBtn.setAttribute('aria-label', 'Stop generating');
 
       // Remove any existing loading message
       const existingLoadingMessage = document.getElementById('loading-message');
@@ -461,7 +955,6 @@
         <div class="avatar" role="img" aria-label="AI assistant">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.1116 10.623H12.1193C11.8039 10.6499 11.5231 10.7037 11.2808 10.7807C11.2808 10.7807 10.927 10.8922 10.3847 10.9691C10.2577 10.9883 10.0962 10.9883 10.0077 10.9883H9.94235C9.85389 10.9883 9.68851 10.9807 9.56543 10.9614C9.02312 10.873 8.67312 10.7499 8.67312 10.7499C8.43081 10.673 8.15004 10.6153 7.83466 10.5807C6.10774 10.4037 5.36158 11.0614 5.31927 11.1845C5.27697 11.3076 5.46543 12.9076 5.60389 13.1614C5.73851 13.4114 5.9462 13.5576 6.13466 13.6383C6.32697 13.7191 7.90774 13.8768 8.43466 13.8037C8.96158 13.7307 9.04235 13.5537 9.18466 13.2845C9.28466 13.0922 9.54235 12.223 9.68466 11.7114C9.71927 11.6114 9.72312 11.4114 9.96543 11.396C10.2077 11.4153 10.2116 11.6191 10.2424 11.7191C10.3808 12.2307 10.6231 13.1076 10.7193 13.2999C10.8539 13.573 10.9347 13.7499 11.4616 13.8345C11.9847 13.9153 13.5693 13.7884 13.7616 13.7114C13.9539 13.6345 14.1616 13.4922 14.3 13.2422C14.4385 12.9922 14.6539 11.396 14.6154 11.273C14.577 11.146 13.8424 10.4768 12.1116 10.623Z" fill="#0250D9"/>
-            <path d="M17.5077 5.59604H17.5116C17.0308 4.9845 16.4616 4.44219 15.8308 3.97681C16.4847 3.86143 16.9808 3.2922 16.9808 2.60758C16.9808 1.83835 16.3577 1.21143 15.5847 1.21143C14.8116 1.21143 14.1885 1.8345 14.1885 2.60758C14.1885 2.76143 14.2193 2.90758 14.2654 3.04604C13.2731 2.57681 12.1885 2.26912 11.0539 2.14989C9.15389 1.94989 7.31927 2.28835 5.73851 3.0345C5.78081 2.89989 5.81158 2.75758 5.81158 2.60758C5.81158 1.83835 5.18851 1.21143 4.41543 1.21143C3.64235 1.21143 3.01927 1.8345 3.01927 2.60758C3.01927 3.2922 3.51158 3.85758 4.15774 3.97681C2.36543 5.29989 1.11543 7.22681 0.830813 9.46143C0.565429 11.5268 1.15389 13.596 2.49235 15.2883C4.00774 17.2037 6.36158 18.4614 8.9462 18.7345C9.30774 18.773 9.66543 18.7922 10.0193 18.7922C14.6308 18.7922 18.6231 15.6614 19.1693 11.423C19.4347 9.35758 18.8462 7.28835 17.5077 5.59604ZM10.0077 16.4076H10.0039C6.53466 16.4037 3.71158 14.0883 3.71158 11.2422C3.71158 10.3845 3.97312 9.56143 4.4462 8.83066C4.48851 9.0922 4.56543 9.31912 4.65004 9.48835C4.76543 9.71912 4.9962 9.85373 5.23851 9.85373C5.33466 9.85373 5.43466 9.8345 5.52697 9.78835C5.85389 9.63066 5.98851 9.23835 5.83851 8.91143C5.75774 8.73835 5.55004 8.16527 6.05389 7.72681C6.54235 8.16912 7.24235 8.68835 8.03081 8.9422C9.50004 9.40758 10.6116 9.1345 10.6577 9.12296C10.8808 9.06527 11.0539 8.89989 11.1231 8.68066C11.1924 8.46143 11.1424 8.22296 10.9924 8.05373C10.25 7.19989 9.8962 6.57681 9.74235 6.19989C12.75 6.60758 13.327 9.00373 13.35 9.11143C13.4154 9.41912 13.6885 9.63066 13.9924 9.63066C14.0385 9.63066 14.0808 9.62681 14.127 9.61527C14.4847 9.5422 14.7116 9.19219 14.6385 8.8345C14.5462 8.38835 14.3039 7.7845 13.8731 7.18066C15.3462 8.12681 16.3 9.59604 16.3 11.246C16.3 14.0922 13.477 16.4076 10.0077 16.4076Z" fill="#0250D9"/>
           </svg>
         </div>
         <div class="message-content">
@@ -486,17 +979,17 @@
       // Clear input and update UI state
       promptInput.value = "";
       isGenerating = true;
-      stopBtn.disabled = false;
-      generateBtn.disabled = true;
+      generateBtn.disabled = false;
 
       // Improve focus management
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    form.addEventListener('submit', handleSubmit);
-
-    stopBtn.onclick = () => {
+    // Update generate button click handler to handle both generate and stop
+    generateBtn.onclick = (e) => {
+      e.preventDefault();
       if (isGenerating) {
+        // Stop generation
         parent.postMessage({ pluginMessage: { type: "stop" } }, "*");
 
         // Remove any existing loading or stopped messages
@@ -517,7 +1010,6 @@
           <div class="avatar" role="img" aria-label="AI assistant">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.1116 10.623H12.1193C11.8039 10.6499 11.5231 10.7037 11.2808 10.7807C11.2808 10.7807 10.927 10.8922 10.3847 10.9691C10.2577 10.9883 10.0962 10.9883 10.0077 10.9883H9.94235C9.85389 10.9883 9.68851 10.9807 9.56543 10.9614C9.02312 10.873 8.67312 10.7499 8.67312 10.7499C8.43081 10.673 8.15004 10.6153 7.83466 10.5807C6.10774 10.4037 5.36158 11.0614 5.31927 11.1845C5.27697 11.3076 5.46543 12.9076 5.60389 13.1614C5.73851 13.4114 5.9462 13.5576 6.13466 13.6383C6.32697 13.7191 7.90774 13.8768 8.43466 13.8037C8.96158 13.7307 9.04235 13.5537 9.18466 13.2845C9.28466 13.0922 9.54235 12.223 9.68466 11.7114C9.71927 11.6114 9.72312 11.4114 9.96543 11.396C10.2077 11.4153 10.2116 11.6191 10.2424 11.7191C10.3808 12.2307 10.6231 13.1076 10.7193 13.2999C10.8539 13.573 10.9347 13.7499 11.4616 13.8345C11.9847 13.9153 13.5693 13.7884 13.7616 13.7114C13.9539 13.6345 14.1616 13.4922 14.3 13.2422C14.4385 12.9922 14.6539 11.396 14.6154 11.273C14.577 11.146 13.8424 10.4768 12.1116 10.623Z" fill="#0250D9"/>
-              <path d="M17.5077 5.59604H17.5116C17.0308 4.9845 16.4616 4.44219 15.8308 3.97681C16.4847 3.86143 16.9808 3.2922 16.9808 2.60758C16.9808 1.83835 16.3577 1.21143 15.5847 1.21143C14.8116 1.21143 14.1885 1.8345 14.1885 2.60758C14.1885 2.76143 14.2193 2.90758 14.2654 3.04604C13.2731 2.57681 12.1885 2.26912 11.0539 2.14989C9.15389 1.94989 7.31927 2.28835 5.73851 3.0345C5.78081 2.89989 5.81158 2.75758 5.81158 2.60758C5.81158 1.83835 5.18851 1.21143 4.41543 1.21143C3.64235 1.21143 3.01927 1.8345 3.01927 2.60758C3.01927 3.2922 3.51158 3.85758 4.15774 3.97681C2.36543 5.29989 1.11543 7.22681 0.830813 9.46143C0.565429 11.5268 1.15389 13.596 2.49235 15.2883C4.00774 17.2037 6.36158 18.4614 8.9462 18.7345C9.30774 18.773 9.66543 18.7922 10.0193 18.7922C14.6308 18.7922 18.6231 15.6614 19.1693 11.423C19.4347 9.35758 18.8462 7.28835 17.5077 5.59604ZM10.0077 16.4076H10.0039C6.53466 16.4037 3.71158 14.0883 3.71158 11.2422C3.71158 10.3845 3.97312 9.56143 4.4462 8.83066C4.48851 9.0922 4.56543 9.31912 4.65004 9.48835C4.76543 9.71912 4.9962 9.85373 5.23851 9.85373C5.33466 9.85373 5.43466 9.8345 5.52697 9.78835C5.85389 9.63066 5.98851 9.23835 5.83851 8.91143C5.75774 8.73835 5.55004 8.16527 6.05389 7.72681C6.54235 8.16912 7.24235 8.68835 8.03081 8.9422C9.50004 9.40758 10.6116 9.1345 10.6577 9.12296C10.8808 9.06527 11.0539 8.89989 11.1231 8.68066C11.1924 8.46143 11.1424 8.22296 10.9924 8.05373C10.25 7.19989 9.8962 6.57681 9.74235 6.19989C12.75 6.60758 13.327 9.00373 13.35 9.11143C13.4154 9.41912 13.6885 9.63066 13.9924 9.63066C14.0385 9.63066 14.0808 9.62681 14.127 9.61527C14.4847 9.5422 14.7116 9.19219 14.6385 8.8345C14.5462 8.38835 14.3039 7.7845 13.8731 7.18066C15.3462 8.12681 16.3 9.59604 16.3 11.246C16.3 14.0922 13.477 16.4076 10.0077 16.4076Z" fill="#0250D9"/>
             </svg>
           </div>
           <div class="message-content">
@@ -526,11 +1018,17 @@
         `;
         chatBox.appendChild(stoppedMessage);
         isGenerating = false;
-        stopBtn.disabled = true;
+        generateBtn.classList.remove('generating');
+        generateBtn.innerHTML = '<span class="icon">➤</span>';
+        generateBtn.setAttribute('aria-label', 'Send message');
         generateBtn.disabled = false;
-
-        // Scroll to bottom
+        promptInput.disabled = false;
+        promptInput.focus();
         chatBox.scrollTop = chatBox.scrollHeight;
+        return;
+      } else {
+        // Start generation
+        handleSubmit(e);
       }
     };
 
@@ -607,13 +1105,47 @@
           </div>
           <div class="message-content">
             ${message.success ? '✅ Design generated successfully!' : '❌ Generation stopped'}
+            <span id="download-json-placeholder"></span>
           </div>
         `;
         chatBox.appendChild(completionMessage);
         isGenerating = false;
-        stopBtn.disabled = true;
-        generateBtn.disabled = false;
+        generateBtn.classList.remove('generating');
+        generateBtn.innerHTML = '<span class="icon">➤</span>';
+        generateBtn.setAttribute('aria-label', 'Send message');
         chatBox.scrollTop = chatBox.scrollHeight;
+        // Debug: log the plugin message
+        console.log('Plugin message:', message);
+        // Add Download JSON button if design was successful
+        if (message.success && message.designJson) {
+          const downloadBtn = document.createElement('button');
+          downloadBtn.textContent = 'Download JSON';
+          downloadBtn.className = 'action-button';
+          downloadBtn.style.marginTop = '10px';
+          downloadBtn.style.width = 'auto';
+          downloadBtn.style.maxWidth = '160px';
+          downloadBtn.style.display = 'block';
+          downloadBtn.style.marginLeft = 'auto';
+          downloadBtn.style.marginRight = 'auto';
+          downloadBtn.onclick = () => {
+            const blob = new Blob([JSON.stringify(message.designJson, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'design.json';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }, 100);
+          };
+          // Place the button inside the message-content
+          const placeholder = completionMessage.querySelector('#download-json-placeholder');
+          if (placeholder) {
+            placeholder.appendChild(downloadBtn);
+          }
+        }
       }
     };
 
@@ -627,6 +1159,496 @@
 
     // Initialize focus
     promptInput.focus();
+
+    // Add new template handling
+    const templateModal = document.getElementById('templateModal');
+    const componentModal = document.getElementById('componentModal');
+    const showTemplatesBtn = document.getElementById('showTemplates');
+    const showComponentsBtn = document.getElementById('showComponents');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    const templateBtns = document.querySelectorAll('.template-btn');
+    const componentBtns = document.querySelectorAll('.component-btn');
+    const qualityBar = document.querySelector('.quality-bar');
+    const qualityTips = document.querySelector('.quality-tips');
+
+    // Template definitions
+    const templates = {
+      basic: `Create a [screen type] for [purpose] that allows users to [main action].
+Include [specific components/sections].`,
+      
+      detailed: `Design a [screen type] with the following:
+- Purpose: [what users will do]
+- Main sections: [list sections]
+- Key actions: [primary user actions]
+- Data to display: [specific information needed]`,
+      
+      list: `Create a [object] list view that shows:
+- Columns: [list columns]
+- Filters: [filter options]
+- Actions: [available actions]
+- Sort by: [default sorting]`,
+      
+      form: `Create a [form/modal] for [action] with:
+- Fields: [list all fields with types]
+- Sections: [group related fields]
+- Buttons: [actions available]
+- Validation: [required fields]`,
+      
+      advanced: `Create a [application type] application with [number] screens:
+
+Screen 1: [Screen Name]
+- Type: [dashboard/list/detail/form]
+- Purpose: [what users do here]
+- Components needed:
+  - [Component 1]: [specific details]
+  - [Component 2]: [specific details]
+- User flow: [how users interact]
+
+Screen 2: [Screen Name]
+[Repeat structure]
+
+Navigation flow: [how screens connect]`
+    };
+
+    // Component definitions
+    const components = {
+      card: "Card component for grouping related content",
+      datatable: "Data Table for displaying tabular data with sorting and filtering",
+      chart: "Chart component for visualizing data",
+      input: "Input field for single-line text entry",
+      combobox: "Combobox for searchable dropdown selection",
+      textarea: "Textarea for multi-line text input",
+      globalnav: "Global Navigation for app-level navigation",
+      tabs: "Tabs for switching between related views",
+      breadcrumb: "Breadcrumb for showing navigation path"
+    };
+
+    // Show/hide modals
+    showTemplatesBtn.onclick = (e) => {
+      e.preventDefault();
+      templateModal.style.display = 'flex';
+    };
+    
+    showComponentsBtn.onclick = (e) => {
+      e.preventDefault();
+      componentModal.style.display = 'flex';
+    };
+    
+    closeModalBtns.forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        templateModal.style.display = 'none';
+        componentModal.style.display = 'none';
+      };
+    });
+
+    // Handle template selection
+    templateBtns.forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault(); // Prevent any default form submission
+        const template = templates[btn.dataset.template];
+        if (template) {
+          // If there's existing text, add a newline before the template
+          const currentText = promptInput.value;
+          const newText = currentText ? currentText + '\n\n' + template : template;
+          promptInput.value = newText;
+          templateModal.style.display = 'none';
+          updatePromptQuality();
+          // Focus back on the input
+          promptInput.focus();
+          // Place cursor at the end
+          promptInput.selectionStart = promptInput.selectionEnd = promptInput.value.length;
+        }
+      };
+    });
+
+    // Handle component selection
+    componentBtns.forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault(); // Prevent any default form submission
+        const component = components[btn.dataset.component];
+        if (component) {
+          const cursorPos = promptInput.selectionStart;
+          const textBefore = promptInput.value.substring(0, cursorPos);
+          const textAfter = promptInput.value.substring(cursorPos);
+          // Add a space before and after the component if needed
+          const spaceBefore = textBefore && !textBefore.endsWith(' ') ? ' ' : '';
+          const spaceAfter = textAfter && !textAfter.startsWith(' ') ? ' ' : '';
+          promptInput.value = textBefore + spaceBefore + `[${btn.dataset.component}]` + spaceAfter + textAfter;
+          componentModal.style.display = 'none';
+          updatePromptQuality();
+          // Focus back on the input
+          promptInput.focus();
+          // Place cursor after the inserted component
+          const newCursorPos = cursorPos + spaceBefore.length + btn.dataset.component.length + 2 + spaceAfter.length;
+          promptInput.selectionStart = promptInput.selectionEnd = newCursorPos;
+        }
+      };
+    });
+
+    // Close modals when clicking outside
+    window.onclick = (event) => {
+      if (event.target === templateModal) templateModal.style.display = 'none';
+      if (event.target === componentModal) componentModal.style.display = 'none';
+    };
+
+    // Update prompt quality based on content
+    function updatePromptQuality() {
+      const prompt = promptInput.value.trim();
+      let quality = 0;
+      let tips = [];
+
+      // Add updating animation
+      const qualityBar = document.querySelector('.quality-bar');
+      const qualityTips = document.querySelector('.quality-tips');
+      
+      if (qualityBar) {
+        qualityBar.classList.add('updating');
+        // Remove animation after it completes
+        setTimeout(() => qualityBar.classList.remove('updating'), 1000);
+      }
+
+      // Check if there are at least 2 words
+      const wordCount = prompt.split(/\s+/).filter(word => word.length > 0).length;
+      const shouldShowTips = wordCount >= 2;
+
+      // Check for minimum length
+      if (prompt.length < 10) {
+        tips.push('Add more details to your prompt');
+      } else {
+        quality += 10;
+      }
+
+      // Check for template structure
+      if (prompt.includes('- Purpose:') || 
+          prompt.includes('Components needed:') || 
+          prompt.includes('Main sections:') ||
+          prompt.includes('Key actions:') ||
+          prompt.includes('Fields:') ||
+          prompt.includes('Navigation flow:')) {
+        quality += 30;
+      } else {
+        tips.push('Consider using a template for better structure');
+      }
+
+      // Check for specific components
+      const componentMatches = prompt.match(/\[(card|datatable|chart|input|combobox|textarea|globalnav|tabs|breadcrumb)\]/gi);
+      if (componentMatches) {
+        quality += Math.min(30, componentMatches.length * 10); // Up to 30 points for components
+      } else {
+        tips.push('Specify SLDS components for better results');
+      }
+
+      // Check for user actions and interactions
+      if (prompt.includes('allows users to') || 
+          prompt.includes('Key actions:') || 
+          prompt.includes('User flow:') ||
+          prompt.includes('Actions:') ||
+          prompt.includes('how users interact')) {
+        quality += 30;
+      } else {
+        tips.push('Include user actions and interactions');
+      }
+
+      // Ensure quality doesn't exceed 100
+      quality = Math.min(100, quality);
+
+      // Update UI with animations
+      if (qualityBar && qualityTips) {
+        // Update quality bar
+        qualityBar.style.width = `${quality}%`;
+        
+        // Update quality bar color based on score
+        if (quality >= 80) {
+          qualityBar.style.backgroundColor = '#4CAF50';
+        } else if (quality >= 50) {
+          qualityBar.style.backgroundColor = '#FFC107';
+        } else {
+          qualityBar.style.backgroundColor = '#FF3B30';
+        }
+
+        // Only show tips if we have at least 2 words
+        if (shouldShowTips) {
+          // Update tips with animation
+          if (tips.length > 0) {
+            qualityTips.textContent = `Tips: ${tips.join(', ')}`;
+            qualityTips.className = 'quality-tips warning';
+          } else {
+            qualityTips.textContent = 'Great prompt!';
+            qualityTips.className = 'quality-tips success';
+          }
+
+          // Show tips with animation
+          qualityTips.classList.add('visible');
+
+          // Hide tips after a delay if user stops typing
+          clearTimeout(window.tipsTimeout);
+          window.tipsTimeout = setTimeout(() => {
+            if (!document.activeElement === promptInput) {
+              qualityTips.classList.remove('visible');
+            }
+          }, 2000);
+        } else {
+          // Hide tips if we don't have enough words
+          qualityTips.classList.remove('visible');
+          qualityTips.textContent = 'Type at least 2 words for tips...';
+        }
+      }
+    }
+
+    // Update the focus/blur handlers to respect the word count
+    promptInput.addEventListener('focus', () => {
+      const tips = document.querySelector('.quality-tips');
+      const wordCount = promptInput.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+      if (tips && wordCount >= 2) {
+        tips.classList.add('visible');
+      }
+    });
+
+    promptInput.addEventListener('blur', () => {
+      const tips = document.querySelector('.quality-tips');
+      if (tips) {
+        tips.classList.remove('visible');
+      }
+    });
+
+    // Update hover handler to respect the word count
+    const promptQuality = document.querySelector('.prompt-quality');
+    if (promptQuality) {
+      promptQuality.addEventListener('mouseenter', () => {
+        const tips = document.querySelector('.quality-tips');
+        const wordCount = promptInput.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+        if (tips && wordCount >= 2) {
+          tips.classList.add('visible');
+        }
+      });
+
+      promptQuality.addEventListener('mouseleave', () => {
+        const tips = document.querySelector('.quality-tips');
+        if (tips && !document.activeElement === promptInput) {
+          tips.classList.remove('visible');
+        }
+      });
+    }
+
+    // Add event listeners for prompt quality updates
+    promptInput.addEventListener('input', updatePromptQuality);
+    promptInput.addEventListener('change', updatePromptQuality);
+    promptInput.addEventListener('paste', () => setTimeout(updatePromptQuality, 0));
+
+    // Update quality when templates or components are added
+    templateBtns.forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        const template = templates[btn.dataset.template];
+        if (template) {
+          const currentText = promptInput.value;
+          const newText = currentText ? currentText + '\n\n' + template : template;
+          promptInput.value = newText;
+          templateModal.style.display = 'none';
+          updatePromptQuality();
+          promptInput.focus();
+          promptInput.selectionStart = promptInput.selectionEnd = promptInput.value.length;
+        }
+      };
+    });
+
+    componentBtns.forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        const component = components[btn.dataset.component];
+        if (component) {
+          const cursorPos = promptInput.selectionStart;
+          const textBefore = promptInput.value.substring(0, cursorPos);
+          const textAfter = promptInput.value.substring(cursorPos);
+          const spaceBefore = textBefore && !textBefore.endsWith(' ') ? ' ' : '';
+          const spaceAfter = textAfter && !textAfter.startsWith(' ') ? ' ' : '';
+          promptInput.value = textBefore + spaceBefore + `[${btn.dataset.component}]` + spaceAfter + textAfter;
+          componentModal.style.display = 'none';
+          updatePromptQuality();
+          promptInput.focus();
+          const newCursorPos = cursorPos + spaceBefore.length + btn.dataset.component.length + 2 + spaceAfter.length;
+          promptInput.selectionStart = promptInput.selectionEnd = newCursorPos;
+        }
+      };
+    });
+
+    // Initialize quality indicator
+    updatePromptQuality();
+
+    // Add styles for quality indicator
+    const style = document.createElement('style');
+    style.textContent = `
+      .quality-bar {
+        transition: width 0.3s ease, background-color 0.3s ease;
+      }
+      
+      .quality-tips {
+        transition: color 0.3s ease;
+        margin-top: 8px;
+        font-size: 12px;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Handle tab key for suggestions
+    promptInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const suggestions = document.querySelector('.prompt-suggestions');
+        if (suggestions.style.display === 'none') {
+          suggestions.style.display = 'block';
+          // Populate suggestions based on current input
+          const suggestionList = suggestions.querySelector('.suggestion-list');
+          suggestionList.innerHTML = Object.entries(templates)
+            .map(([key, template]) => `
+              <div class="suggestion-item" data-template="${key}">
+                ${key.charAt(0).toUpperCase() + key.slice(1)} Template
+              </div>
+            `).join('');
+        } else {
+          suggestions.style.display = 'none';
+        }
+      }
+    });
+
+    // Handle suggestion clicks
+    document.querySelector('.suggestion-list').addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent any default form submission
+      const item = e.target.closest('.suggestion-item');
+      if (item) {
+        const template = templates[item.dataset.template];
+        if (template) {
+          // If there's existing text, add a newline before the template
+          const currentText = promptInput.value;
+          const newText = currentText ? currentText + '\n\n' + template : template;
+          promptInput.value = newText;
+          document.querySelector('.prompt-suggestions').style.display = 'none';
+          updatePromptQuality();
+          // Focus back on the input
+          promptInput.focus();
+          // Place cursor at the end
+          promptInput.selectionStart = promptInput.selectionEnd = promptInput.value.length;
+        }
+      }
+    });
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.prompt-input-wrapper')) {
+        document.querySelector('.prompt-suggestions').style.display = 'none';
+      }
+    });
+
+    // Update form submission to prevent accidental submissions
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Prevent default form submission
+      handleSubmit(e); // Call our custom submit handler
+    });
+
+    // --- Figma File Management ---
+    const manageFilesBtn = document.getElementById('manageFilesBtn');
+    const fileModal = document.getElementById('fileModal');
+    const closeFileModal = document.getElementById('closeFileModal');
+    const figmaFileUrlInput = document.getElementById('figmaFileUrl');
+    const addFigmaFileBtn = document.getElementById('addFigmaFileBtn');
+    const figmaFileList = document.getElementById('figmaFileList');
+    const fileModalError = document.getElementById('fileModalError');
+
+    let figmaFiles = [];
+
+    // Open modal
+    manageFilesBtn.onclick = () => {
+      fileModal.style.display = 'flex';
+      fileModalError.textContent = '';
+      figmaFileUrlInput.value = '';
+      renderFigmaFileList();
+    };
+    closeFileModal.onclick = () => {
+      fileModal.style.display = 'none';
+    };
+    window.addEventListener('click', (e) => {
+      if (e.target === fileModal) fileModal.style.display = 'none';
+    });
+
+    // Extract file key from Figma URL
+    function extractFileKey(url) {
+      // Accepts /file/, /design/, /proto/, etc. and direct keys
+      const urlMatch = url.match(/figma.com\/(file|design|proto)\/([a-zA-Z0-9]+)\//);
+      if (urlMatch) return urlMatch[2];
+      // Accept direct file key (22 chars, alphanumeric)
+      const keyMatch = url.trim().match(/^[a-zA-Z0-9]{22}$/);
+      if (keyMatch) return keyMatch[0];
+      return null;
+    }
+
+    // Render file list
+    function renderFigmaFileList() {
+      figmaFileList.innerHTML = '';
+      if (figmaFiles.length === 0) {
+        figmaFileList.innerHTML = '<li style="color:#888;font-size:13px;">No files added yet.</li>';
+        return;
+      }
+      figmaFiles.forEach((file, idx) => {
+        const li = document.createElement('li');
+        li.className = 'file-list-item';
+        li.innerHTML = `<span>${file.name || file.key}</span><button class="delete-file-btn" data-idx="${idx}">Delete</button>`;
+        figmaFileList.appendChild(li);
+      });
+    }
+
+    // Delete file
+    figmaFileList.onclick = (e) => {
+      if (e.target.classList.contains('delete-file-btn')) {
+        const idx = parseInt(e.target.getAttribute('data-idx'), 10);
+        figmaFiles.splice(idx, 1);
+        renderFigmaFileList();
+        parent.postMessage({ pluginMessage: { type: 'updateFigmaFiles', files: figmaFiles } }, '*');
+      }
+    };
+
+    // Add file
+    addFigmaFileBtn.onclick = async () => {
+      fileModalError.textContent = '';
+      const url = figmaFileUrlInput.value.trim();
+      const key = extractFileKey(url);
+      if (!key) {
+        fileModalError.textContent = 'Invalid Figma file URL.';
+        return;
+      }
+      if (figmaFiles.some(f => f.key === key)) {
+        fileModalError.textContent = 'File already added.';
+        return;
+      }
+      // Validate with plugin (check for components)
+      fileModalError.textContent = 'Validating file...';
+      parent.postMessage({ pluginMessage: { type: 'validateFigmaFile', key } }, '*');
+    };
+
+    // Listen for plugin validation response
+    window.onmessage = (event) => {
+      const message = event.data.pluginMessage;
+      if (!message) return;
+      if (message.type === 'figmaFileValidated') {
+        if (message.success) {
+          figmaFiles.push({ key: message.key, name: message.name });
+          renderFigmaFileList();
+          fileModalError.textContent = '';
+          figmaFileUrlInput.value = '';
+          parent.postMessage({ pluginMessage: { type: 'updateFigmaFiles', files: figmaFiles } }, '*');
+        } else {
+          fileModalError.textContent = message.error || 'File is invalid or has no components.';
+        }
+      }
+      // ...existing onmessage logic...
+      // (rest of your plugin message handling)
+    };
+
+    const fileModalLoader = document.getElementById('fileModalLoader');
+
+    function showFileLoader(show) {
+      if (fileModalLoader) fileModalLoader.style.display = show ? 'inline-block' : 'none';
+    }
   </script>
 </body>
 
